@@ -11,10 +11,9 @@ enum class brackets
     size
 };
 
-std::string purgeWhiteSpaces(std::string& str)
+inline void purgeWhiteSpaces(std::string& str)
 {
     str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
-    return str;
 }
 
 brackets areBracketsEven(const std::string& str)
@@ -44,7 +43,7 @@ brackets areBracketsEncapsulated(const std::string& str)
         if(str[i]==')')
         {
             static int last_position_mark{i};
-            for (int j{last_position_mark-1};j>=0;--j)
+            for (int j{last_position_mark-1};j>=-1;--j)
             {
                 if(str[j]=='(')
                 {
@@ -52,7 +51,7 @@ brackets areBracketsEncapsulated(const std::string& str)
                     break;
                 }
 
-                if(j==0)
+                if(j==-1)
                 {
                     return brackets::err_opening_absence;
                 }
@@ -69,7 +68,7 @@ int main()
     std::cout << "Enter the expression: ";
     std::string expression{};
     std::getline(std::cin, expression);
-    std::cout << purgeWhiteSpaces(expression) << '\n';
+    purgeWhiteSpaces(expression);
 
     if(areBracketsEncapsulated(expression)==brackets::ok && areBracketsEven(expression)==brackets::ok)
     {
