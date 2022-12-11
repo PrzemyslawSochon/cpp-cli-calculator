@@ -1,5 +1,10 @@
 #include "input.hpp"
 #include <algorithm> //for std::remove_if
+#include <array>
+#include <vector>
+
+//x_scope can hold vector of coordinates such as [[1,2],[3,4],[10,12]]
+using x_scope = std::vector<std::array<int,2>>;
 
 enum class brackets
 {
@@ -31,7 +36,11 @@ brackets areBracketsEven(const std::string& str)
     {
         return brackets::ok;
     }
-    else {return brackets::err_odd_number;}
+    else
+    {
+        std::cout << "Brackets aren't paired.\n";
+        return brackets::err_odd_number;
+    }
 }
 
 
@@ -42,18 +51,18 @@ brackets areBracketsEncapsulated(const std::string& str)
         //if found closing bracket, look for its opening counterpart
         if(str[i]==')')
         {
-            static int last_position_mark{i};
-            for (int j{last_position_mark-1};j>=-1;--j)
+            for (int j{i-1};j>=-1;--j)
             {
-                if(str[j]=='(')
-                {
-                    last_position_mark=j;
-                    break;
-                }
-
                 if(j==-1)
                 {
+                    std::cout << "Brackets aren't correctly encapsulated. "
+                              << "See closed bracket `)` at position " << i << ".\n";
                     return brackets::err_opening_absence;
+                }
+
+                if(str[j]=='(')
+                {
+                    break;
                 }
             }
         }
@@ -69,14 +78,7 @@ int main()
     std::string expression{};
     std::getline(std::cin, expression);
     purgeWhiteSpaces(expression);
+    std::cout << expression << '\n';
 
-    if(areBracketsEncapsulated(expression)==brackets::ok && areBracketsEven(expression)==brackets::ok)
-    {
-        std::cout << "OK!\n";
-    }
-    else
-    {
-        std::cout << "NOT OK!\n";
-    }
     return 0;
 }
