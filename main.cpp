@@ -1,11 +1,10 @@
 #include "input.hpp"
 #include <algorithm> //for std::remove_if
 
-std::string purgeWhiteSpaces(const std::string& str)
+std::string purgeWhiteSpaces(std::string& str)
 {
-    std::string str_copy{str};
-    str_copy.erase(std::remove_if(str_copy.begin(), str_copy.end(), isspace), str_copy.end());
-    return str_copy;
+    str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
+    return str;
 }
 
 
