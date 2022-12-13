@@ -1,4 +1,4 @@
-#include "input.hpp"
+#include "inputdebug.hpp"
 #include <algorithm> //for std::remove_if
 #include <array>
 #include <vector>

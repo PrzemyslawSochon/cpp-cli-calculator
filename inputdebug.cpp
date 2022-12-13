@@ -1,4 +1,4 @@
-#include "input.hpp"
+#include "inputdebug.hpp"
 
 void purgeRepeatingPluses(std::string &str)
 {
