@@ -15,6 +15,8 @@ int main()
     areBracketsEven(expression);
     areBracketsEncapsulated(expression);
     
+    purgeRepeatingPluses(expression);
+    std::cout << expression << '\n';
 
     return 0;
 }
