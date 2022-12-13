@@ -1,7 +1,6 @@
 #pragma once
-#ifndef INPUTDEBUG_HPP
-#define INPUTDEBUG_HPP
 
+#include <algorithm>
 #include <array>
 #include <ios>
 #include <iostream>
@@ -29,12 +28,12 @@ enum class Sign
     size
 };
 
-// Before, we can work mathematically with equation, firstly, we need to debug user input.
-// Its split into two parts: simplification and error search.
+// Before, we can work mathematically with the equation, firstly, we need to debug user input.
+// It's split into two parts: simplification and error search.
 // Simplification is performed without user intervention.
-// It cleanups obsolete characters and makes equation friendly for further analysis.
+// It cleans up obsolete characters and makes equations friendly for further analysis.
 // Error search looks for input ambiguity or operations that are impossible to solve.
-// If found, user is asked to correct input and try again.
+// If found, a user is asked to correct the input and try again.
 
 // Generally, simplification is performed first for the sake of source code simplicity.
 // I.e. I don't have to deal with whitespaces if I remove them in the first place.
@@ -55,5 +54,3 @@ void trimRepeatingPluses(std::string &str);
 
 Brackets areBracketsPaired(std::string_view str);
 Brackets areBracketsEncapsulated(std::string_view str);
-
-#endif //! INPUTDEBUG_HPP
