@@ -59,6 +59,7 @@ inline void purgeWhiteSpaces(std::string &str)
 }
 
 void trimRepeatingPluses(std::string &str);
+void simplifyRepeatingMinuses(std::string &str);
 
 Brackets areBracketsPaired(std::string_view str);
 Brackets areBracketsEncapsulated(std::string_view str);

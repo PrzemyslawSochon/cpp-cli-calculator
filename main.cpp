@@ -15,8 +15,8 @@ int main()
         std::cout << "Mathematical expression after removing whitespaces is:\n";
         printMathExpression(expression);
 
-        trimRepeatingPluses(expression);
-        std::cout << "Mathematical expression after trimming pluses is:\n";
+        simplifyRepeatingMinuses(expression);
+        std::cout << "Mathematical expression after simplifying minuses is:\n";
         printMathExpression(expression);
 
         areBracketsPaired(expression);

@@ -47,13 +47,31 @@ bool confirm()
     } while (true);
 }
 
-void trimRepeatingPluses(std::string &str)
+void simplifyRepeatingSigns(std::string &str)
 {
     for (int i{0}; i < str.size() - 1; ++i)
     {
-        if (str[i] == '+' && str[i + 1] == '+')
+        if (str[i] == '-' && str[i + 1] == '-')
+        {
+            str.erase(i, 2);
+            str.insert(i, "+");
+            --i;
+        }
+        else if (str[i] == '-' && str[i + 1] == '+')
+        {
+            str.erase(i, 2);
+            str.insert(i, "-");
+            --i;
+        }
+        else if (str[i] == '+' && str[i + 1] == '+')
         {
             str.erase(i, 1);
+            --i;
+        }
+        else if (str[i] == '+' && str[i + 1] == '-')
+        {
+            str.erase(i, 2);
+            str.insert(i, "-");
             --i;
         }
     }
