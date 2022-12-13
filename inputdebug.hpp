@@ -26,10 +26,10 @@ enum class Sign
     size
 };
 
-// Before, we can work mathematically with the equation, firstly, we need to debug user input.
+// Before, we can work mathematically with the expression, firstly, we need to debug user input.
 // It's split into two parts: simplification and error search.
 // Simplification is performed without user intervention.
-// It cleans up obsolete characters and makes equations friendly for further analysis.
+// It cleans up obsolete characters and makes expressions friendly for further analysis.
 // Error search looks for input ambiguity or operations that are impossible to solve.
 // If found, a user is asked to correct the input and try again.
 
@@ -39,6 +39,11 @@ enum class Sign
 inline void ignoreGarbageInput()
 {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+inline void printMathExpression(std::string_view str)
+{
+    if(std::cout<<str<<'\n') {return;}
 }
 
 std::string consoleInputCritErrHandling();
