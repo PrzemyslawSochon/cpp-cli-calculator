@@ -75,7 +75,7 @@ Brackets areBracketsEncapsulated(std::string_view str)
             for (int j{i - 1}; j >= -1; --j)
             {
                 //if char position reached -1 (out of scope) interrupt the loop
-                if (j == -1)
+                if (j <= -1)
                 {
                     std::cout << "Brackets aren't correctly encapsulated. "
                               << "See closed bracket `)` at position " << i << ".\n";
@@ -91,10 +91,10 @@ Brackets areBracketsEncapsulated(std::string_view str)
         // if found opening bracket, look for its closing counterpart
         else if (str[i] == '(')
         {
-            for (int j{i - 1}; j >= -1; ++j)
+            for (int j{i + 1}; j <= str.size(); ++j)
             {
                 //if char position exceeded str size (out of scope) interrupt the loop
-                if (j >= str.size()+1)
+                if (j >= str.size())
                 {
                     std::cout << "Brackets aren't correctly encapsulated. "
                               << "See opening bracket `(` at position " << i << ".\n";
