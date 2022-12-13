@@ -7,24 +7,6 @@
 //x_scope can hold vector of coordinates such as [[1,2],[3,4],[10,12]]
 using x_scope = std::array<int,2>;
 
-enum class Brackets
-{
-    ok,
-
-    err_odd_number,
-    err_opening_absence,
-
-    size
-};
-
-enum class Sign
-{
-    negative,
-    positive,
-
-    size
-};
-
 inline void purgeWhiteSpaces(std::string& str)
 {
     str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
