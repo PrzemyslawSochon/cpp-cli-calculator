@@ -54,8 +54,6 @@ inline void purgeWhiteSpaces(std::string &str)
 void trimRepeatingPluses(std::string &str);
 
 Brackets areBracketsPaired(std::string_view str);
-Brackets areBracketsEncapsulated(const std::string &str);
-void cancelRowOfSigns(std::string &str);
-void cancelOutSigns(std::string &str);
+Brackets areBracketsEncapsulated(std::string_view str);
 
 #endif //! INPUTDEBUG_HPP
