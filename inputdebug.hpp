@@ -8,8 +8,6 @@
 #include <string>
 #include <string_view>
 
-using x1x2scope = std::array<int, 2>;
-
 enum class Brackets
 {
     ok,
