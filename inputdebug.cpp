@@ -1,5 +1,35 @@
 #include "inputdebug.hpp"
 
+std::string consoleInputCritErrHandling()
+{
+    constexpr std::streamsize max_chars{std::numeric_limits<std::streamsize>::max()};
+
+    do
+    {
+        std::string console_input{};
+        if(std::getline(std::cin, console_input).fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(max_chars, '\n');
+            std::cerr << "An error occurred while reading from the console.\n";
+            std::cerr << "Please try again.\n";
+            std::cerr.flush();
+            continue;
+        }
+        if (console_input.empty())
+        {
+            std::cin.clear();
+            std::cin.ignore(max_chars, '\n');
+            std::cerr << "The input string is empty. Please try again.\n";
+            std::cerr.flush();
+            continue;
+        }
+
+        return console_input;
+    }
+    while (true);
+}
+
 void purgeRepeatingPluses(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)

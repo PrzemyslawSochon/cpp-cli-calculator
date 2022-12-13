@@ -6,6 +6,7 @@
 #include <ios>
 #include <iostream>
 #include <limits>
+#include <string>
 
 using x1x2scope = std::array<int, 2>;
 
@@ -34,14 +35,16 @@ enum class Sign
 //Error search looks for input ambiguity or operations that are impossible to solve.
 //If found, user is asked to correct input and try again.
 
-//Generally simplification is performed first for the sake of source code simplicity.
+//Generally, simplification is performed first for the sake of source code simplicity.
 //I.e. I don't have to deal with whitespaces if I remove them in the first place.
 
-//reserved for rework
-/* inline void ignoreExtraInput()
+
+inline void ignoreGarbageInput()
 {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-} */
+}
+
+std::string consoleInputCritErrHandling();
 
 inline void purgeWhiteSpaces(std::string &str)
 {
