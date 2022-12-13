@@ -11,6 +11,14 @@ inline void ignoreExtraInput()
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
+inline void purgeWhiteSpaces(std::string& str)
+{
+    str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
+}
+
+void purgeRepeatingPluses(std::string& str);
+
+
 //x_scope can hold vector of coordinates such as [[1,2],[3,4],[10,12]]
 using x_scope = std::array<int,2>;
 

@@ -1,5 +1,20 @@
 #include "input.hpp"
 
+void purgeRepeatingPluses(std::string& str)
+{
+    for (int i{0};i<str.size();++i)
+    {
+        int j{i};
+        if(str[i]=='+' && str[i+1]=='+')
+        {   
+            while(str[j]=='+'){++j;}
+
+            str.erase(i,j);
+            str.insert(i, "+");
+        }
+    }
+}
+
 Brackets areBracketsEven(const std::string& str)
 {
     int open_brackets{0};
@@ -31,6 +46,7 @@ Brackets areBracketsEncapsulated(const std::string& str)
         {
             for (int j{i-1};j>=-1;--j)
             {
+                //char position reached -1 (out of scope) = couldn't find open bracket
                 if(j==-1)
                 {
                     std::cout << "Brackets aren't correctly encapsulated. "

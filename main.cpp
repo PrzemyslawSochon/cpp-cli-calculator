@@ -1,13 +1,7 @@
 #include "input.hpp"
 #include <algorithm> //for std::remove_if
 #include <array>
-#include <string>
 #include <vector>
-
-inline void purgeWhiteSpaces(std::string& str)
-{
-    str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
-}
 
 int main()
 {
@@ -20,7 +14,7 @@ int main()
 
     areBracketsEven(expression);
     areBracketsEncapsulated(expression);
-    cancelOutSigns(expression);
+    
 
     return 0;
 }
