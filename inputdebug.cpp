@@ -29,6 +29,24 @@ std::string consoleInputCritErrHandling()
     } while (true);
 }
 
+bool askForConfirmation()
+{
+    do
+    {
+        std::cout << "Would you like calculate another expression? (y/n) ";
+        char first{consoleInputCritErrHandling()[0]};
+        switch (first)
+        {
+        case 'y':
+        case 'Y':
+            return true;
+        case 'n':
+        case 'N':
+            return false;
+        }
+    } while (true);
+}
+
 void trimRepeatingPluses(std::string &str)
 {
     for (int i{0}; i < str.size() - 1; ++i)
@@ -74,7 +92,7 @@ Brackets areBracketsEncapsulated(std::string_view str)
         {
             for (int j{i - 1}; j >= -1; --j)
             {
-                //if char position reached -1 (out of scope) interrupt the loop
+                // if char position reached -1 (out of scope) interrupt the loop
                 if (j <= -1)
                 {
                     std::cout << "Brackets aren't correctly encapsulated. "
@@ -93,7 +111,7 @@ Brackets areBracketsEncapsulated(std::string_view str)
         {
             for (int j{i + 1}; j <= str.size(); ++j)
             {
-                //if char position exceeded str size (out of scope) interrupt the loop
+                // if char position exceeded str size (out of scope) interrupt the loop
                 if (j >= str.size())
                 {
                     std::cout << "Brackets aren't correctly encapsulated. "
@@ -107,7 +125,6 @@ Brackets areBracketsEncapsulated(std::string_view str)
                 }
             }
         }
-
     }
     return Brackets::ok;
 }
