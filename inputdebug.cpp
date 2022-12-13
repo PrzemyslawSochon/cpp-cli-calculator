@@ -11,8 +11,8 @@ std::string consoleInputCritErrHandling()
         {
             std::cin.clear();
             std::cin.ignore(max_chars, '\n');
-            std::cerr << "An error occurred while reading from the console.\n";
-            std::cerr << "Please try again.\n";
+            std::cerr << "An error occurred while reading from the console.\n"
+                      << "Please try again.\n";
             std::cerr.flush();
             continue;
         }
@@ -74,7 +74,7 @@ Brackets areBracketsEncapsulated(std::string_view str)
         {
             for (int j{i - 1}; j >= -1; --j)
             {
-                // char position reached -1 (out of scope) = couldn't find open bracket
+                //if char position reached -1 (out of scope) interrupt the loop
                 if (j == -1)
                 {
                     std::cout << "Brackets aren't correctly encapsulated. "
@@ -88,6 +88,26 @@ Brackets areBracketsEncapsulated(std::string_view str)
                 }
             }
         }
+        // if found opening bracket, look for its closing counterpart
+        else if (str[i] == '(')
+        {
+            for (int j{i - 1}; j >= -1; ++j)
+            {
+                //if char position exceeded str size (out of scope) interrupt the loop
+                if (j >= str.size()+1)
+                {
+                    std::cout << "Brackets aren't correctly encapsulated. "
+                              << "See opening bracket `(` at position " << i << ".\n";
+                    return Brackets::err_opening_absence;
+                }
+
+                if (str[j] == ')')
+                {
+                    break;
+                }
+            }
+        }
+
     }
     return Brackets::ok;
 }
