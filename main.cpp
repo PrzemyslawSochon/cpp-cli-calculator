@@ -21,7 +21,7 @@ int main()
 
         areBracketsPaired(expression);
         areBracketsEncapsulated(expression);
-    } while (askForConfirmation());
+    } while (confirm());
 
     return 0;
 }

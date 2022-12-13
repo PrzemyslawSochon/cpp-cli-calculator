@@ -43,12 +43,15 @@ inline void ignoreGarbageInput()
 
 inline void printMathExpression(std::string_view str)
 {
-    if(std::cout<<str<<'\n') {return;}
+    if (std::cout << str << '\n')
+    {
+        return;
+    }
 }
 
 std::string consoleInputCritErrHandling();
 
-bool askForConfirmation();
+bool confirm();
 
 inline void purgeWhiteSpaces(std::string &str)
 {

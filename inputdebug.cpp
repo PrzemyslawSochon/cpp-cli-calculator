@@ -29,7 +29,7 @@ std::string consoleInputCritErrHandling()
     } while (true);
 }
 
-bool askForConfirmation()
+bool confirm()
 {
     do
     {
