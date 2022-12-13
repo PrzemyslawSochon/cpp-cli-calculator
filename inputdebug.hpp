@@ -7,6 +7,7 @@
 #include <iostream>
 #include <limits>
 #include <string>
+#include <string_view>
 
 using x1x2scope = std::array<int, 2>;
 
@@ -28,16 +29,15 @@ enum class Sign
     size
 };
 
-//Before, we can work mathematically with equation, firstly, we need to debug user input.
-//Its split into two parts: simplification and error search.
-//Simplification is performed without user intervention.
-//It cleanups obsolete characters and makes equation friendly for further analysis.
-//Error search looks for input ambiguity or operations that are impossible to solve.
-//If found, user is asked to correct input and try again.
+// Before, we can work mathematically with equation, firstly, we need to debug user input.
+// Its split into two parts: simplification and error search.
+// Simplification is performed without user intervention.
+// It cleanups obsolete characters and makes equation friendly for further analysis.
+// Error search looks for input ambiguity or operations that are impossible to solve.
+// If found, user is asked to correct input and try again.
 
-//Generally, simplification is performed first for the sake of source code simplicity.
-//I.e. I don't have to deal with whitespaces if I remove them in the first place.
-
+// Generally, simplification is performed first for the sake of source code simplicity.
+// I.e. I don't have to deal with whitespaces if I remove them in the first place.
 
 inline void ignoreGarbageInput()
 {
@@ -51,9 +51,9 @@ inline void purgeWhiteSpaces(std::string &str)
     str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
 }
 
-void purgeRepeatingPluses(std::string &str);
+void trimRepeatingPluses(std::string &str);
 
-Brackets areBracketsEven(const std::string &str);
+Brackets areBracketsPaired(std::string_view str);
 Brackets areBracketsEncapsulated(const std::string &str);
 void cancelRowOfSigns(std::string &str);
 void cancelOutSigns(std::string &str);

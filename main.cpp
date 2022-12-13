@@ -7,15 +7,15 @@ int main()
 {
     std::cout << "Enter the expression: ";
     std::string expression{};
-    std::getline(std::cin, expression);
+    expression = consoleInputCritErrHandling();
 
     purgeWhiteSpaces(expression);
     std::cout << expression << '\n';
 
-    areBracketsEven(expression);
+    areBracketsPaired(expression);
     areBracketsEncapsulated(expression);
-    
-    purgeRepeatingPluses(expression);
+
+    trimRepeatingPluses(expression);
     std::cout << expression << '\n';
 
     return 0;

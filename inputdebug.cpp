@@ -7,7 +7,7 @@ std::string consoleInputCritErrHandling()
     do
     {
         std::string console_input{};
-        if(std::getline(std::cin, console_input).fail())
+        if (std::getline(std::cin, console_input).fail())
         {
             std::cin.clear();
             std::cin.ignore(max_chars, '\n');
@@ -26,28 +26,22 @@ std::string consoleInputCritErrHandling()
         }
 
         return console_input;
-    }
-    while (true);
+    } while (true);
 }
 
-void purgeRepeatingPluses(std::string &str)
+void trimRepeatingPluses(std::string &str)
 {
-    for (int i{0}; i < str.size(); ++i)
+    for (int i{0}; i < str.size() - 1; ++i)
     {
-        int j{i};
         if (str[i] == '+' && str[i + 1] == '+')
         {
-            while (str[j] == '+')
-            {
-                ++j;
-            }
-            str.erase(i, j);
-            str.insert(i, "+");
+            str.erase(i, 1);
+            --i;
         }
     }
 }
 
-Brackets areBracketsEven(const std::string &str)
+Brackets areBracketsPaired(std::string_view str)
 {
     int open_brackets{0};
     int close_brackets{0};
@@ -107,9 +101,8 @@ void cancelRowOfSigns(std::string &str)
     }
 }
 
-
-//reserved for a further review, probably going to delete anyway
-//shit isn't understandable at all
+// reserved for a further review, probably going to delete anyway
+// shit isn't understandable at all
 /* void cancelOutSigns(std::string &str)
 {
     int i{0};
