@@ -6,6 +6,14 @@
 #include <iostream>
 #include <limits>
 
+inline void ignoreExtraInput()
+{
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+//x_scope can hold vector of coordinates such as [[1,2],[3,4],[10,12]]
+using x_scope = std::array<int,2>;
+
 enum class Brackets
 {
     ok,
@@ -24,9 +32,9 @@ enum class Sign
     size
 };
 
-inline void ignoreExtraInput()
-{
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-}
+Brackets areBracketsEven(const std::string& str);
+Brackets areBracketsEncapsulated(const std::string& str);
+void cancelRowOfSigns(std::string& str);
+void cancelOutSigns(std::string& str);
 
 #endif //!INPUT_HPP
