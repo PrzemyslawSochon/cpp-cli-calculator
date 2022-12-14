@@ -13,7 +13,7 @@ constexpr bool g_treat_comma_as_decimal_fraction{true};
 constexpr bool g_treat_all_brackets_as_parenthesis{true};
 constexpr bool g_treat_backward_slash_as_division{true};
 constexpr bool g_treat_exclamation_as_factorial{true};
-constexpr bool g_treat_parenthesis_leading_trailing_symbols_as_multiplication{true};
+constexpr bool g_treat_parenthesis_adjacent_symbols_as_multiplication{true};
 
 constexpr bool g_treat_pi_as_trig_constant{true};
 constexpr bool g_treat_e_as_log_constant{true};

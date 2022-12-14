@@ -1,5 +1,6 @@
 #include "inputdebug.hpp"
 #include "settings.hpp"
+#include <cctype>
 
 std::string consoleInputCritErrHandling()
 {
@@ -203,6 +204,37 @@ void handleExclamation(std::string& str)
             if (!g_treat_exclamation_as_factorial)
             {
                 std::cerr << "Error, exclamation!\n";
+                return;
+            }
+        }
+    }
+}
+
+void handleBracketsAdjacentSymbols(std::string& str)
+{
+    for (int i{0}; i < str.size(); ++i)
+    {
+        if(str[i] == '(' && isalnum(str[i-1]) && i>0)
+        {
+            if(g_treat_parenthesis_adjacent_symbols_as_multiplication)
+            {
+            str.insert(i-1, "*");
+            }
+            else
+            {
+                std::cerr<< "Error, adjacent number to bracket!\n";
+                return;
+            }
+        }
+        else if(str[i] == ')' && isalnum(str[i+1]) && i<str.size()-1)
+        {
+            if(g_treat_parenthesis_adjacent_symbols_as_multiplication)
+            {
+            str.insert(i, "*");
+            }
+            else
+            {
+                std::cerr<< "Error, adjacent number to bracket!\n";
                 return;
             }
         }
