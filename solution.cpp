@@ -39,7 +39,7 @@ Expression turnStringIntoExpression(const std::string &str)
         }
         }
     }
-    return {-1, -1, 'e'};
+    return {0, 0, '0'};
 }
 
 double calculateResultOfExpression(Expression ex)
