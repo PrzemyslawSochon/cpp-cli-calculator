@@ -17,14 +17,6 @@ enum class Brackets
     size
 };
 
-enum class Sign
-{
-    negative,
-    positive,
-
-    size
-};
-
 // Before, we can work mathematically with the expression, firstly, we need to debug user input.
 // It's split into two parts: simplification and error search.
 // Simplification is performed without user intervention.
