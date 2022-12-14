@@ -1,4 +1,5 @@
 #include "inputdebug.hpp"
+#include "solution.hpp"
 
 int main()
 {

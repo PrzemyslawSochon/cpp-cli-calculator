@@ -1,13 +1,14 @@
-#include <cassert>
+#pragma once
 
-double expression(double a, double b, char symbol)
+struct Expression
 {
-    switch (symbol)
-    {
-        case '+': {return a+b;}
-        case '-': {return a-b;}
-        case '/': {return a/b;}
-        case '*': {return a*b;}
-        default: {assert(symbol && "Operator not found!");}
-    }
-}
+    double variable1{1};
+    double variable2{1};
+    char symbol{};
+};
+
+std::string_view extractFromParenthesis(std::string_view str);
+
+Expression turnStringIntoExpression(const std::string &str);
+
+double calculateResultOfExpression(Expression ex);
