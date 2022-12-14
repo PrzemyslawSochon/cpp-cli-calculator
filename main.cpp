@@ -23,7 +23,8 @@ int main()
         areBracketsPaired(expression);
         areBracketsEncapsulated(expression);
 
-        std::string sub_expression{extractFromParenthesis(expression)};
+        StringPosition str_pos{extractFromParenthesis(expression)};
+        std::string sub_expression{str_pos.str};
         std::cout << "The extracted string: " << sub_expression << '\n';
 
         Expression expr{turnStringIntoExpression(sub_expression)};
@@ -32,7 +33,10 @@ int main()
                   << "Operator: " << expr.symbol << '\n'
                   << "Second value: " << expr.variable2 << '\n';
 
-        std::cout << sub_expression << '=' << calculateResultOfExpression(expr) << '\n';
+        double result{calculateResultOfExpression(expr)};
+        std::cout << sub_expression << '=' << result << '\n';
+
+
 
     } while (confirm());
 

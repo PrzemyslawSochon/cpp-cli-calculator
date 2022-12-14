@@ -9,7 +9,14 @@ struct Expression
     char symbol{};
 };
 
-std::string_view extractFromParenthesis(std::string_view str);
+struct StringPosition
+{
+    std::string str{};
+    int x1 {};
+    int x2 {};
+};
+
+StringPosition extractFromParenthesis(const std::string& str);
 
 Expression turnStringIntoExpression(const std::string &str);
 

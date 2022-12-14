@@ -2,7 +2,7 @@
 #include <cassert>
 #include <iostream>
 
-std::string_view extractFromParenthesis(std::string_view str)
+StringPosition extractFromParenthesis(const std::string& str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
@@ -12,13 +12,13 @@ std::string_view extractFromParenthesis(std::string_view str)
             {
                 if (str[j] == '(')
                 {
-                    return str.substr(j + 1, i - j - 1);
+                    return {str.substr(j + 1, i - j - 1),j,i};
                 }
             }
             assert(str[i] && "No closing bracket!");
         }
     }
-    return "error";
+    return {"error", -1, -1};
 }
 
 Expression turnStringIntoExpression(const std::string &str)
@@ -68,4 +68,9 @@ double calculateResultOfExpression(Expression ex)
     }
     }
     return EXIT_FAILURE;
+}
+
+void insertResultIntoOriginalExpression(std::string& str, double result)
+{
+
 }
