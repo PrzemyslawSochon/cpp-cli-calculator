@@ -8,11 +8,11 @@ std::string_view extractFromParenthesis(std::string_view str)
     {
         if (str[i] == ')')
         {
-            for (int j{0}; j > -1; --j)
+            for (int j{i}; j > -1; --j)
             {
                 if (str[j] == '(')
                 {
-                    return str.substr(i - j + 1, j - 2);
+                    return str.substr(j + 1, i - j - 1);
                 }
             }
             assert(str[i] && "No closing bracket!");
@@ -39,7 +39,7 @@ Expression turnStringIntoExpression(const std::string &str)
         }
         }
     }
-    return {-1,-1,'e'};
+    return {-1, -1, 'e'};
 }
 
 double calculateResultOfExpression(Expression ex)
