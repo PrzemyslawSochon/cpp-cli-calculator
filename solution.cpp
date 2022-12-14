@@ -3,9 +3,6 @@
 #include <cmath>
 #include <iostream>
 
-// order of operations
-// look for closing bracket
-
 bool isOperator(char c)
 {
     return c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '%' || c == '!';
