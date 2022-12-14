@@ -32,6 +32,8 @@ Expression turnStringIntoExpression(const std::string &str)
         case '-':
         case '*':
         case '/':
+        case '^':
+        case '%':
         {
             double variable1{static_cast<double>(std::stoi(str.substr(0, i + 1)))};
             double variable2{static_cast<double>(std::stoi(str.substr(i + 1)))};
