@@ -1,5 +1,6 @@
 #include "solution.hpp"
 #include <cassert>
+#include <cmath>
 #include <iostream>
 
 StringPosition extractFromParenthesis(const std::string& str)
@@ -61,6 +62,14 @@ double calculateResultOfExpression(Expression ex)
     case '*':
     {
         return (ex.variable1 * ex.variable2);
+    }
+    case '^':
+    {
+        return (pow(ex.variable1, ex.variable2));
+    }
+    case '%':
+    {
+        return (fmod(ex.variable1, ex.variable2));
     }
     default:
     {
