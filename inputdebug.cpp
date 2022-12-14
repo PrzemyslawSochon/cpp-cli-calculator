@@ -150,33 +150,6 @@ void handleBrackets(std::string &str)
                 return;
             }
         }
-        /* switch (str[i])
-        {
-        case '[':
-        case '{':
-            if (g_treat_all_brackets_as_parenthesis)
-            {
-                str.erase(i, 1);
-                str.insert(i, "(");
-            }
-            else
-            {
-                std::cerr << "error, forbidden brackets\n";
-                return;
-            }
-        case ']':
-        case '}':
-            if (g_treat_all_brackets_as_parenthesis)
-            {
-                str.erase(i, 1);
-                str.insert(i, ")");
-            }
-            else
-            {
-                std::cerr << "error, forbidden brackets\n";
-                return;
-            }
-        } */
     }
 }
 
