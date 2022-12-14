@@ -1,6 +1,5 @@
 #include "inputdebug.hpp"
 #include "settings.hpp"
-#include <cctype>
 
 std::string consoleInputCritErrHandling()
 {
@@ -209,15 +208,21 @@ void handleExclamation(std::string &str)
     }
 }
 
+bool isAlphanumeric(char c)
+{
+    return (c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122);
+}
+
 void handleBracketsAdjacentSymbols(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
-        if (str[i] == '(' && isalnum(str[i - 1]) && i > 0)
+        if (str[i] == '(' && i > 0 && isAlphanumeric(str[i - 1]))
         {
             if (g_treat_parenthesis_adjacent_symbols_as_multiplication)
             {
-                str.insert(i - 1, "*");
+                str.insert(i, "*");
+                ++i;
             }
             else
             {
@@ -225,11 +230,12 @@ void handleBracketsAdjacentSymbols(std::string &str)
                 return;
             }
         }
-        else if (str[i] == ')' && isalnum(str[i + 1]) && i < str.size() - 1)
+        else if (str[i] == ')' && i < str.size() - 1 && isAlphanumeric(str[i + 1]))
         {
             if (g_treat_parenthesis_adjacent_symbols_as_multiplication)
             {
-                str.insert(i, "*");
+                str.insert(i + 1, "*");
+                ++i;
             }
             else
             {
