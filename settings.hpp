@@ -1,23 +1,28 @@
 #pragma once
 
-inline void isBoostInstalled()
-{
-    ;
-}
-
 namespace mathConstants
 {
+    double pi{3.14159};
+    double e{2.71828};
 }
 
-//if any of the following booleans is set to false
-//program will throw an error on a corresponding encounter
-constexpr bool treat_double_asterisks_as_exponent{true};
-constexpr bool treat_comma_as_decimal_fraction{true};
-constexpr bool treat_braces_as_parenthesis{true};
-constexpr bool treat_brackets_as_parenthesis{true};
-constexpr bool treat_backward_slash_as_division{true};
-constexpr bool treat_percentage_as_modulo{true};
-constexpr bool treat_exclamation_as_factorial{true};
-constexpr bool treat_pi_as_trig_constant{true};
-constexpr bool treat_e_as_log_constant{true};
-constexpr bool treat_g_as_gravitational_const{true};
+// if any of the following booleans is set to false
+// program will throw an error on a corresponding encounter
+constexpr bool g_treat_double_asterisks_as_exponent{true};
+constexpr bool g_treat_comma_as_decimal_fraction{true};
+constexpr bool g_treat_all_brackets_as_parenthesis{true};
+constexpr bool g_treat_backward_slash_as_division{true};
+constexpr bool g_treat_exclamation_as_factorial{true};
+constexpr bool g_treat_parenthesis_leading_trailing_symbols_as_multiplication{true};
+
+constexpr bool g_treat_pi_as_trig_constant{true};
+constexpr bool g_treat_e_as_log_constant{true};
+
+constexpr bool g_trim_non_ascii_chars{true};
+
+// only one of them can be true, if user forces both to be true
+// XOR will throw 0
+constexpr bool g_treat_percentage_as_modulo{false};
+constexpr bool g_treat_percentage_as_decimal{true};
+constexpr bool g_xor_percentage{
+    g_treat_percentage_as_modulo ^ g_treat_percentage_as_decimal};

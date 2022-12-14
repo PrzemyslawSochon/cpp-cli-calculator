@@ -1,4 +1,5 @@
 #include "inputdebug.hpp"
+#include "settings.hpp"
 
 std::string consoleInputCritErrHandling()
 {
@@ -77,6 +78,137 @@ void simplifyRepeatingSigns(std::string &str)
     }
 }
 
+void handleDoubleAsterisks(std::string &str)
+{
+    for (int i{0}; i < str.size() - 1; ++i)
+    {
+        if (str[i] == '*' && str[i + 1] == '*')
+        {
+            if (g_treat_double_asterisks_as_exponent)
+            {
+                str.erase(i, 2);
+                str.insert(i, "^");
+                --i;
+            }
+            else
+            {
+                std::cerr << "Error, double asterisks!\n";
+                return;
+            }
+        }
+    }
+}
+
+void handleCommas(std::string &str)
+{
+    for (int i{0}; i < str.size(); ++i)
+    {
+        if (str[i] == ',')
+        {
+            if (g_treat_comma_as_decimal_fraction)
+            {
+                str.erase(i, 1);
+                str.insert(i, ".");
+            }
+            else
+            {
+                std::cerr << "Error, comma!\n";
+                return;
+            }
+        }
+    }
+}
+
+void handleBrackets(std::string &str)
+{
+    for (int i{0}; i < str.size(); ++i)
+    {
+        switch (str[i])
+        {
+        case '[':
+        case '{':
+            if (g_treat_all_brackets_as_parenthesis)
+            {
+                str.erase(i, 1);
+                str.insert(i, "(");
+            }
+            else
+            {
+                std::cerr << "error, forbidden brackets\n";
+                return;
+            }
+        case ']':
+        case '}':
+            if (g_treat_all_brackets_as_parenthesis)
+            {
+                str.erase(i, 1);
+                str.insert(i, ")");
+            }
+            else
+            {
+                std::cerr << "error, forbidden brackets\n";
+                return;
+            }
+        }
+    }
+}
+
+void handleBackwardSlash(std::string& str)
+{
+    for (int i{0}; i < str.size(); ++i)
+    {
+        if (str[i] == '\\')
+        {
+            if (g_treat_backward_slash_as_division)
+            {
+                str.erase(i, 1);
+                str.insert(i, "/");
+            }
+            else
+            {
+                std::cerr << "Error, backward slash!\n";
+                return;
+            }
+        }
+    }
+}
+
+void handleModulo(std::string& str)
+{
+
+    for (int i{0}; i < str.size(); ++i)
+    {
+        if (str[i] == '%')
+        {
+            if (!g_xor_percentage)
+            {
+                std::cerr << "Error, percentage!\n";
+                return;
+            }
+            else if (g_treat_percentage_as_decimal)
+            {
+                str.erase(i, 1);
+                str.insert(i, "/100");
+            }
+        }
+    }
+}
+
+void handleExclamation(std::string& str)
+{
+    for (int i{0}; i < str.size(); ++i)
+    {
+        if (str[i] == '!')
+        {
+            if (!g_treat_exclamation_as_factorial)
+            {
+                std::cerr << "Error, exclamation!\n";
+                return;
+            }
+        }
+    }
+}
+
 Brackets areBracketsPaired(std::string_view str)
 {
     int open_brackets{0};
@@ -145,4 +277,24 @@ Brackets areBracketsEncapsulated(std::string_view str)
         }
     }
     return Brackets::ok;
+}
+
+void handleNonAsciiChars(std::string &str)
+{
+    for (int i{0}; i < str.size(); ++i)
+    {
+        if (str[i] > 127)
+        {
+            if (g_trim_non_ascii_chars)
+            {
+                str.erase(i, 1);
+                --i;
+            }
+            else
+            {
+                std::cerr << "Non-ASCII character at position " << i << " isn't supported.\n";
+                return;
+            }
+        }
+    }
 }
