@@ -188,6 +188,7 @@ void handleModulo(std::string &str)
             {
                 str.erase(i, 1);
                 str.insert(i, "/100");
+                i=i+3;
             }
         }
     }
@@ -204,6 +205,25 @@ void handleExclamation(std::string &str)
                 std::cerr << "Error, exclamation!\n";
                 return;
             }
+        }
+    }
+}
+
+void swapLiteralsWithConstants(std::string &str)
+{
+    for (int i{0}; i < str.size(); ++i)
+    {
+        if (str[i]=='p' && str[i+1]=='i' && g_treat_pi_as_trig_constant)
+        {
+            str.erase(i,2);
+            str.insert(i,mathConstants::pi_str);
+            i=i+5;
+        }
+        else if(str[i]=='e' && g_treat_e_as_log_constant)
+        {
+            str.erase(i,1);
+            str.insert(i,mathConstants::e_str);
+            i=i+6;
         }
     }
 }

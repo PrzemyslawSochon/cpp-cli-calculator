@@ -64,6 +64,7 @@ void handleBrackets(std::string &str);
 void handleBackwardSlash(std::string& str);
 void handleModulo(std::string& str);
 void handleExclamation(std::string& str);
+void swapLiteralsWithConstants(std::string &str);
 void handleBracketsAdjacentSymbols(std::string& str);
 
 Brackets areBracketsPaired(std::string_view str);

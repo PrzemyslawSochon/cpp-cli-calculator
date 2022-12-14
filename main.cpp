@@ -29,7 +29,7 @@ int main()
         printMathExpression(expression);
 
         handleBrackets(expression);
-        std::cout <<"After handling brackets\n";
+        std::cout << "After handling brackets\n";
         printMathExpression(expression);
 
         handleBackwardSlash(expression);
@@ -41,11 +41,15 @@ int main()
         printMathExpression(expression);
 
         handleExclamation(expression);
-        std::cout<< "After handling exclamation\n";
+        std::cout << "After handling exclamation\n";
+        printMathExpression(expression);
+
+        swapLiteralsWithConstants(expression);
+        std::cout << "After swap\n";
         printMathExpression(expression);
 
         handleBracketsAdjacentSymbols(expression);
-        std::cout<< "After handling bracket adjacent symbols\n";
+        std::cout << "After handling bracket adjacent symbols\n";
         printMathExpression(expression);
 
         areBracketsPaired(expression);
@@ -67,7 +71,6 @@ int main()
         insertResultToExpression(expression, result, str_pos.x1, str_pos.x2);
         std::cout << "Mathematical expression after solving one of expressions:\n";
         printMathExpression(expression);
-
 
     } while (confirm());
 
