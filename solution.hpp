@@ -21,3 +21,5 @@ StringPosition extractFromParenthesis(const std::string& str);
 Expression turnStringIntoExpression(const std::string &str);
 
 double calculateResultOfExpression(Expression ex);
+
+void insertResultToExpression(std::string& expr, double result, int pos1, int pos2);

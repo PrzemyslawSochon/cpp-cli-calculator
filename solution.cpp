@@ -70,7 +70,8 @@ double calculateResultOfExpression(Expression ex)
     return EXIT_FAILURE;
 }
 
-void insertResultIntoOriginalExpression(std::string& str, double result)
+void insertResultToExpression(std::string& expr, double result, int pos1, int pos2)
 {
-
+    expr.erase(pos1, pos2 - pos1 +1);
+    expr.insert(pos1, std::to_string(result));
 }
