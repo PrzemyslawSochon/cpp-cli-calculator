@@ -124,7 +124,33 @@ void handleBrackets(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
-        switch (str[i])
+        if (str[i] == '[' || str[i] == '{')
+        {
+            if (g_treat_all_brackets_as_parenthesis)
+            {
+                str.erase(i, 1);
+                str.insert(i, "(");
+            }
+            else
+            {
+                std::cerr << "error, forbidden brackets\n";
+                return;
+            }
+        }
+        else if (str[i] == ']' || str[i] == '}')
+        {
+            if (g_treat_all_brackets_as_parenthesis)
+            {
+                str.erase(i, 1);
+                str.insert(i, ")");
+            }
+            else
+            {
+                std::cerr << "error, forbidden brackets\n";
+                return;
+            }
+        }
+        /* switch (str[i])
         {
         case '[':
         case '{':
@@ -150,11 +176,11 @@ void handleBrackets(std::string &str)
                 std::cerr << "error, forbidden brackets\n";
                 return;
             }
-        }
+        } */
     }
 }
 
-void handleBackwardSlash(std::string& str)
+void handleBackwardSlash(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
@@ -174,7 +200,7 @@ void handleBackwardSlash(std::string& str)
     }
 }
 
-void handleModulo(std::string& str)
+void handleModulo(std::string &str)
 {
 
     for (int i{0}; i < str.size(); ++i)
@@ -195,7 +221,7 @@ void handleModulo(std::string& str)
     }
 }
 
-void handleExclamation(std::string& str)
+void handleExclamation(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
@@ -210,31 +236,31 @@ void handleExclamation(std::string& str)
     }
 }
 
-void handleBracketsAdjacentSymbols(std::string& str)
+void handleBracketsAdjacentSymbols(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
-        if(str[i] == '(' && isalnum(str[i-1]) && i>0)
+        if (str[i] == '(' && isalnum(str[i - 1]) && i > 0)
         {
-            if(g_treat_parenthesis_adjacent_symbols_as_multiplication)
+            if (g_treat_parenthesis_adjacent_symbols_as_multiplication)
             {
-            str.insert(i-1, "*");
+                str.insert(i - 1, "*");
             }
             else
             {
-                std::cerr<< "Error, adjacent number to bracket!\n";
+                std::cerr << "Error, adjacent number to bracket!\n";
                 return;
             }
         }
-        else if(str[i] == ')' && isalnum(str[i+1]) && i<str.size()-1)
+        else if (str[i] == ')' && isalnum(str[i + 1]) && i < str.size() - 1)
         {
-            if(g_treat_parenthesis_adjacent_symbols_as_multiplication)
+            if (g_treat_parenthesis_adjacent_symbols_as_multiplication)
             {
-            str.insert(i, "*");
+                str.insert(i, "*");
             }
             else
             {
-                std::cerr<< "Error, adjacent number to bracket!\n";
+                std::cerr << "Error, adjacent number to bracket!\n";
                 return;
             }
         }

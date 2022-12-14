@@ -5,7 +5,7 @@ int main()
 {
     do
     {
-        std::cout << "Enter a mathematical expression: ";
+        std::cout << "Enter a mathematical expression\n";
         std::string expression{};
 
         expression = consoleInputCritErrHandling();
@@ -18,6 +18,34 @@ int main()
 
         simplifyRepeatingSigns(expression);
         std::cout << "Mathematical expression after simplifying signs is:\n";
+        printMathExpression(expression);
+
+        handleDoubleAsterisks(expression);
+        std::cout << "Expression after handling double Asterisks is\n";
+        printMathExpression(expression);
+
+        handleCommas(expression);
+        std::cout << "After handling commas\n";
+        printMathExpression(expression);
+
+        handleBrackets(expression);
+        std::cout <<"After handling brackets\n";
+        printMathExpression(expression);
+
+        handleBackwardSlash(expression);
+        std::cout << "After handling backward slashes\n";
+        printMathExpression(expression);
+
+        handleModulo(expression);
+        std::cout << "After handling modulo\n";
+        printMathExpression(expression);
+
+        handleExclamation(expression);
+        std::cout<< "After handling exclamation\n";
+        printMathExpression(expression);
+
+        handleBracketsAdjacentSymbols(expression);
+        std::cout<< "After handling bracket adjacent symbols\n";
         printMathExpression(expression);
 
         areBracketsPaired(expression);
