@@ -2,11 +2,18 @@
 #include <string>
 #include <string_view>
 
+struct SignificantExpr
+{
+    std::string value1;
+    char symbol{'+'};
+    std::string value2{0};
+};
+
 struct Expression
 {
     double variable1{1};
     double variable2{1};
-    char symbol{};
+    char symbol{'$'};
 };
 
 struct StringPosition
@@ -22,4 +29,4 @@ Expression turnStringIntoExpression(const std::string &str);
 
 double calculateResultOfExpression(Expression ex);
 
-void insertResultToExpression(std::string& expr, double result, int pos1, int pos2);
+void insertResultToExpression(std::string& expr, double result, int pos1, int pos2);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
