@@ -16,12 +16,16 @@ int main()
         std::cout << "Mathematical expression after removing whitespaces is:\n";
         printMathExpression(expression);
 
-        simplifyRepeatingMinuses(expression);
+        simplifyRepeatingSigns(expression);
         std::cout << "Mathematical expression after simplifying minuses is:\n";
         printMathExpression(expression);
 
         areBracketsPaired(expression);
         areBracketsEncapsulated(expression);
+
+        std::string sub_expression{extractFromParenthesis(expression)};
+        std::cout << "The extracted expression: " << sub_expression << '\n';
+
     } while (confirm());
 
     return 0;

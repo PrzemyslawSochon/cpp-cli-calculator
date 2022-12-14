@@ -58,8 +58,7 @@ inline void purgeWhiteSpaces(std::string &str)
     str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
 }
 
-void trimRepeatingPluses(std::string &str);
-void simplifyRepeatingMinuses(std::string &str);
+void simplifyRepeatingSigns(std::string &str);
 
 Brackets areBracketsPaired(std::string_view str);
 Brackets areBracketsEncapsulated(std::string_view str);

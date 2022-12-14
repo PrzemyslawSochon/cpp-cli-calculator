@@ -1,8 +1,6 @@
 #include "solution.hpp"
 #include <cassert>
 #include <iostream>
-#include <string>
-#include <string_view>
 
 std::string_view extractFromParenthesis(std::string_view str)
 {
@@ -20,6 +18,7 @@ std::string_view extractFromParenthesis(std::string_view str)
             assert(str[i] && "No closing bracket!");
         }
     }
+    return "error";
 }
 
 Expression turnStringIntoExpression(const std::string &str)
@@ -40,6 +39,7 @@ Expression turnStringIntoExpression(const std::string &str)
         }
         }
     }
+    return {-1,-1,'e'};
 }
 
 double calculateResultOfExpression(Expression ex)
@@ -67,4 +67,5 @@ double calculateResultOfExpression(Expression ex)
         assert(ex.symbol && "Operator not found!");
     }
     }
+    return EXIT_FAILURE;
 }
