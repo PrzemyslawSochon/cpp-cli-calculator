@@ -58,6 +58,13 @@ inline void purgeWhiteSpaces(std::string &str)
 }
 
 void simplifyRepeatingSigns(std::string &str);
+void handleDoubleAsterisks(std::string &str);
+void handleCommas(std::string &str);
+void handleBrackets(std::string &str);
+void handleBackwardSlash(std::string& str);
+void handleModulo(std::string& str);
+void handleExclamation(std::string& str);
+void handleBracketsAdjacentSymbols(std::string& str);
 
 Brackets areBracketsPaired(std::string_view str);
 Brackets areBracketsEncapsulated(std::string_view str);
