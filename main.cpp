@@ -25,7 +25,7 @@ int main()
 
         StringPosition str_pos{extractFromParenthesis(expression)};
         std::string sub_expression{str_pos.str};
-        std::cout << "The extracted string: " << sub_expression << '\n';
+        std::cout << "The extracted string is: " << sub_expression << '\n';
 
         Expression expr{turnStringIntoExpression(sub_expression)};
         std::cout << "Contents of the sub strings are:\n"
@@ -36,6 +36,9 @@ int main()
         double result{calculateResultOfExpression(expr)};
         std::cout << sub_expression << '=' << result << '\n';
 
+        insertResultToExpression(expression, result, str_pos.x1, str_pos.x2);
+        std::cout << "Mathematical expression after solving one of expressions:\n";
+        printMathExpression(expression);
 
 
     } while (confirm());
