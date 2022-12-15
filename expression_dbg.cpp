@@ -201,7 +201,14 @@ std::string_view debugExclamation(std::string &str)
             }
         }
     }
-    return "";
+    if (g_verbose)
+    {
+        return "Exclamation marks `!` debugged.\n";
+    }
+    else
+    {
+        return "";
+    }
 }
 
 std::string_view debugLiterals(std::string &str)
@@ -255,8 +262,7 @@ std::string_view debugBracketAdjacentSymbols(std::string &str)
             }
             else
             {
-                std::cerr << "Error, adjacent number to bracket!\n";
-                return "";
+                throw "Omitting asterisks between variables and parenthesis is turned off in settings.";
             }
         }
         else if (str[i] == ')' && i < str.size() - 1 && isAlphanumeric(str[i + 1]))
@@ -268,10 +274,17 @@ std::string_view debugBracketAdjacentSymbols(std::string &str)
             }
             else
             {
-                std::cerr << "Error, adjacent number to bracket!\n";
-                return "";
+                throw "Omitting asterisks between variables and parenthesis is turned off in settings.";
             }
         }
+    }
+    if (g_verbose)
+    {
+        return "Debugged adjacent symbols to parenthesis.\n";
+    }
+    else
+    {
+        return "";
     }
 }
 
@@ -302,7 +315,7 @@ std::string_view debugNonAsciiChars(std::string &str)
     }
 }
 
-Brackets areBracketsPaired(std::string_view str)
+std::string_view areBracketsPaired(std::string_view str)
 {
     int open_brackets{0};
     int close_brackets{0};
@@ -317,16 +330,15 @@ Brackets areBracketsPaired(std::string_view str)
 
     if (open_brackets == close_brackets)
     {
-        return Brackets::ok;
+        return "ok";
     }
     else
     {
-        std::cout << "Brackets aren't paired.\n";
-        return Brackets::err_odd_number;
+        return "not ok";
     }
 }
 
-Brackets areBracketsEncapsulated(std::string_view str)
+std::string_view areBracketsEncapsulated(std::string_view str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
@@ -340,7 +352,7 @@ Brackets areBracketsEncapsulated(std::string_view str)
                 {
                     std::cout << "Brackets aren't correctly encapsulated. "
                               << "See closed bracket `)` at position " << i << ".\n";
-                    return Brackets::err_opening_absence;
+                    return "not ok";
                 }
 
                 if (str[j] == '(')
@@ -359,7 +371,7 @@ Brackets areBracketsEncapsulated(std::string_view str)
                 {
                     std::cout << "Brackets aren't correctly encapsulated. "
                               << "See opening bracket `(` at position " << i << ".\n";
-                    return Brackets::err_opening_absence;
+                    return "not ok";
                 }
 
                 if (str[j] == ')')
@@ -369,5 +381,5 @@ Brackets areBracketsEncapsulated(std::string_view str)
             }
         }
     }
-    return Brackets::ok;
+    return "ok";
 }

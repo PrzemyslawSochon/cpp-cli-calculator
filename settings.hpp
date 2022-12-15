@@ -3,8 +3,8 @@
 
 namespace mathConstants
 {
-    double pi_value{3.14159};
-    double e_value{2.71828};
+    constexpr double pi_value{3.14159};
+    constexpr double e_value{2.71828};
     std::string_view pi_str{"3.14159"};
     std::string_view e_str{"2.71828"};
 }

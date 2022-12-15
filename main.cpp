@@ -7,17 +7,14 @@ int main()
 {
     do
     {
-        std::cout << "Enter a mathematical expression\n";
+        std::cout << "Enter a mathematical expression.\n";
         std::string expression{};
+
+        expression = consoleInputDebug();
+        trimWhiteSpaces(expression);
 
         try
         {
-            expression = consoleInputDebug();
-            printMathExpression(expression);
-
-            trimWhiteSpaces(expression);
-            printMathExpression(expression);
-
             std::cout << debugRepeatingSigns(expression);
             printMathExpression(expression);
 
@@ -42,9 +39,8 @@ int main()
             std::cout << debugLiterals(expression);
             printMathExpression(expression);
 
-/*             debugBracketAdjacentSymbols(expression);
-            std::cout << "After handling bracket adjacent symbols\n";
-            printMathExpression(expression); */
+            std::cout << debugBracketAdjacentSymbols(expression);
+            printMathExpression(expression);
 
             areBracketsPaired(expression);
             areBracketsEncapsulated(expression);
@@ -52,6 +48,7 @@ int main()
         catch (const char *exception)
         {
             std::cerr << "Error: " << exception << '\n';
+            std::cerr.flush();
             continue;
         }
 
