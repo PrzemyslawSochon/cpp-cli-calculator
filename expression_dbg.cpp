@@ -53,7 +53,7 @@ std::string_view debugDoubleAsterisks(std::string &str)
             }
             else
             {
-                throw "Double asterisks `**` are turned off in settings.\n";
+                throw "Double asterisks `**` are turned off in settings.";
             }
         }
     }
@@ -80,7 +80,7 @@ std::string_view debugCommas(std::string &str)
             }
             else
             {
-                throw "Commas `,` are turned off in settings.\n";
+                throw "Commas `,` are turned off in settings.";
             }
         }
     }
@@ -107,7 +107,7 @@ std::string_view debugBrackets(std::string &str)
             }
             else
             {
-                throw "Any brackets other than parenthesis `()` are turned off in settings.\n";
+                throw "Any brackets other than parenthesis `()` are turned off in settings.";
             }
         }
         else if (str[i] == ']' || str[i] == '}')
@@ -119,7 +119,7 @@ std::string_view debugBrackets(std::string &str)
             }
             else
             {
-                throw "Any brackets other than parenthesis `()` are turned off in settings.\n";
+                throw "Any brackets other than parenthesis `()` are turned off in settings.";
             }
         }
     }
@@ -146,7 +146,7 @@ std::string_view debugBackSlash(std::string &str)
             }
             else
             {
-                throw "Backward slashes `\\` are turned off in settings.\n";
+                throw "Backward slashes `\\` are turned off in settings.";
             }
         }
     }
@@ -169,7 +169,7 @@ std::string_view debugPercentSign(std::string &str)
         {
             if (!g_xor_percentage)
             {
-                throw "Percent signs `%` are turned off in settings.\n";
+                throw "Percent signs `%` are turned off in settings.";
             }
             else if (g_treat_percentage_as_decimal)
             {
@@ -197,7 +197,7 @@ std::string_view debugExclamation(std::string &str)
         {
             if (!g_treat_exclamation_as_factorial)
             {
-                throw "Exclamation marks `!` are disabled in settings.\n";
+                throw "Exclamation marks `!` are disabled in settings.";
             }
         }
     }
@@ -256,7 +256,7 @@ std::string_view debugBracketAdjacentSymbols(std::string &str)
             else
             {
                 std::cerr << "Error, adjacent number to bracket!\n";
-                return;
+                return "";
             }
         }
         else if (str[i] == ')' && i < str.size() - 1 && isAlphanumeric(str[i + 1]))
@@ -269,7 +269,7 @@ std::string_view debugBracketAdjacentSymbols(std::string &str)
             else
             {
                 std::cerr << "Error, adjacent number to bracket!\n";
-                return;
+                return "";
             }
         }
     }
@@ -288,7 +288,7 @@ std::string_view debugNonAsciiChars(std::string &str)
             }
             else
             {
-                throw "Encountered non-ASCII character, you can auto erase them in settings.\n";
+                throw "Encountered non-ASCII character, you can auto erase them in settings.";
             }
         }
     }

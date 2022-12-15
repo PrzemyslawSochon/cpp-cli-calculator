@@ -1,6 +1,7 @@
 #include "expression_dbg.hpp"
 #include "solution.hpp"
 #include "stream_dbg.hpp"
+#include <exception>
 
 int main()
 {
@@ -9,56 +10,52 @@ int main()
         std::cout << "Enter a mathematical expression\n";
         std::string expression{};
 
-        expression = consoleInputDebug();
-        std::cout << "Mathematical expression after checking for critical errors is:\n";
-        printMathExpression(expression);
+        try
+        {
+            expression = consoleInputDebug();
+            printMathExpression(expression);
 
-        trimWhiteSpaces(expression);
-        std::cout << "Mathematical expression after removing whitespaces is:\n";
-        printMathExpression(expression);
+            trimWhiteSpaces(expression);
+            printMathExpression(expression);
 
-        debugRepeatingSigns(expression);
-        std::cout << "Mathematical expression after simplifying signs is:\n";
-        printMathExpression(expression);
+            std::cout << debugRepeatingSigns(expression);
+            printMathExpression(expression);
 
-        debugDoubleAsterisks(expression);
-        std::cout << "Expression after handling double Asterisks is\n";
-        printMathExpression(expression);
+            std::cout << debugDoubleAsterisks(expression);
+            printMathExpression(expression);
 
-        debugCommas(expression);
-        std::cout << "After handling commas\n";
-        printMathExpression(expression);
+            std::cout << debugCommas(expression);
+            printMathExpression(expression);
 
-        debugBrackets(expression);
-        std::cout << "After handling brackets\n";
-        printMathExpression(expression);
+            std::cout << debugBrackets(expression);
+            printMathExpression(expression);
 
-        debugBackSlash(expression);
-        std::cout << "After handling backward slashes\n";
-        printMathExpression(expression);
+            std::cout << debugBackSlash(expression);
+            printMathExpression(expression);
 
-        debugPercentSign(expression);
-        std::cout << "After handling modulo\n";
-        printMathExpression(expression);
+            std::cout << debugPercentSign(expression);
+            printMathExpression(expression);
 
-        debugExclamation(expression);
-        std::cout << "After handling exclamation\n";
-        printMathExpression(expression);
+            std::cout << debugExclamation(expression);
+            printMathExpression(expression);
 
-        debugLiterals(expression);
-        std::cout << "After swap\n";
-        printMathExpression(expression);
+            std::cout << debugLiterals(expression);
+            printMathExpression(expression);
 
-        debugBracketAdjacentSymbols(expression);
-        std::cout << "After handling bracket adjacent symbols\n";
-        printMathExpression(expression);
+/*             debugBracketAdjacentSymbols(expression);
+            std::cout << "After handling bracket adjacent symbols\n";
+            printMathExpression(expression); */
 
-        areBracketsPaired(expression);
-        areBracketsEncapsulated(expression);
+            areBracketsPaired(expression);
+            areBracketsEncapsulated(expression);
+        }
+        catch (const char *exception)
+        {
+            std::cerr << "Error: " << exception << '\n';
+            continue;
+        }
 
-        std::cout << results(parenthesis(expression));
-
-    } while (confirm());
+    } while (again());
 
     return 0;
 }

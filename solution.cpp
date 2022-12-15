@@ -51,22 +51,22 @@ SignificantExpr binaryOperators(const std::string &str)
     {
         if (isOperator(str[i]))
         {
-            symbol=str[i];
-            for (int j{i-1}; j >= 0; ++j)
+            symbol = str[i];
+            for (int j{i - 1}; j >= 0; ++j)
             {
                 if (isOperator(str[j]))
                 {
                     value1 = str.substr(j + 1, i - j - 1);
                 }
             }
-            for (int k{i+1}; k <= str.size(); ++k)
+            for (int k{i + 1}; k <= str.size(); ++k)
             {
                 if (isOperator(str[k]))
                 {
                     value2 = str.substr(i + 1, k - i - 1);
                 }
             }
-            return{value1, symbol, value2};
+            return {value1, symbol, value2};
         }
     }
 }

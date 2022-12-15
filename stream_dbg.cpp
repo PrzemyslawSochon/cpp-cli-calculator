@@ -33,7 +33,7 @@ bool confirm()
 {
     do
     {
-        std::cout << "(y/n) ";
+        std::cout << "(y/n)\n";
         char first{consoleInputDebug()[0]};
         switch (first)
         {
@@ -44,5 +44,14 @@ bool confirm()
         case 'N':
             return false;
         }
+    } while (true);
+}
+
+bool again()
+{
+    do
+    {
+        std::cout << "Do you wanna try again? ";
+        return (confirm());
     } while (true);
 }

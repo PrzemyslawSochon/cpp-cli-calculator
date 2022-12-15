@@ -14,7 +14,7 @@ namespace mathConstants
 constexpr bool g_verbose{true};
 constexpr bool g_treat_double_asterisks_as_exponent{true};
 constexpr bool g_treat_comma_as_decimal_fraction{true};
-constexpr bool g_treat_all_brackets_as_parenthesis{true};
+constexpr bool g_treat_all_brackets_as_parenthesis{false};
 constexpr bool g_treat_backward_slash_as_division{true};
 constexpr bool g_treat_exclamation_as_factorial{true};
 constexpr bool g_treat_parenthesis_adjacent_symbols_as_multiplication{true};

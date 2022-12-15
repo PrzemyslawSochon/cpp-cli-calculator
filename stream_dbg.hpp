@@ -8,3 +8,4 @@
 
 std::string consoleInputDebug();
 bool confirm();
+bool again();
