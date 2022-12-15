@@ -4,7 +4,7 @@
 #include <cmath>
 #include <iostream>
 
-SignificantExpr parenthesis(const std::string &str)
+SignificantExpr solveParenthesis(const std::string &str)
 {
     std::string value1;
     char symbol{'+'};
