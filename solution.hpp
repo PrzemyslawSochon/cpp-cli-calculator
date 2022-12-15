@@ -29,4 +29,7 @@ Expression turnStringIntoExpression(const std::string &str);
 
 double calculateResultOfExpression(Expression ex); */
 
-void insertResultToExpression(std::string& expr, double result, int pos1, int pos2);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+bool isOperator(char c);
+SignificantExpr parenthesis(const std::string &str);
+SignificantExpr binaryOperators(const std::string &str);
+double results(SignificantExpr expr);

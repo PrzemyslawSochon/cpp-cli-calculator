@@ -1,54 +1,7 @@
-#include "inputdebug.hpp"
+#include "expression_dbg.hpp"
 #include "settings.hpp"
 
-std::string consoleInputCritErrHandling()
-{
-    constexpr std::streamsize max_chars{std::numeric_limits<std::streamsize>::max()};
-
-    do
-    {
-        std::string console_input{};
-        if (std::getline(std::cin, console_input).fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(max_chars, '\n');
-            std::cerr << "An error occurred while reading from the console.\n"
-                      << "Please try again.\n";
-            std::cerr.flush();
-            continue;
-        }
-        if (console_input.empty())
-        {
-            std::cin.clear();
-            std::cin.ignore(max_chars, '\n');
-            std::cerr << "The input string is empty. Please try again.\n";
-            std::cerr.flush();
-            continue;
-        }
-
-        return console_input;
-    } while (true);
-}
-
-bool confirm()
-{
-    do
-    {
-        std::cout << "Would you like calculate another expression? (y/n) ";
-        char first{consoleInputCritErrHandling()[0]};
-        switch (first)
-        {
-        case 'y':
-        case 'Y':
-            return true;
-        case 'n':
-        case 'N':
-            return false;
-        }
-    } while (true);
-}
-
-void simplifyRepeatingSigns(std::string &str)
+std::string_view debugRepeatingSigns(std::string &str)
 {
     for (int i{0}; i < str.size() - 1; ++i)
     {
@@ -76,9 +29,17 @@ void simplifyRepeatingSigns(std::string &str)
             --i;
         }
     }
+    if (g_verbose)
+    {
+        return "Simplified signed values.\n";
+    }
+    else
+    {
+        return "";
+    }
 }
 
-void handleDoubleAsterisks(std::string &str)
+std::string_view debugDoubleAsterisks(std::string &str)
 {
     for (int i{0}; i < str.size() - 1; ++i)
     {
@@ -92,14 +53,21 @@ void handleDoubleAsterisks(std::string &str)
             }
             else
             {
-                std::cerr << "Error, double asterisks!\n";
-                return;
+                throw "Double asterisks `**` are turned off in settings.\n";
             }
         }
     }
+    if (g_verbose)
+    {
+        return "Swapped all occurrences of double asterisks `**` to caret signs `^`.\n";
+    }
+    else
+    {
+        return "";
+    }
 }
 
-void handleCommas(std::string &str)
+std::string_view debugCommas(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
@@ -112,14 +80,21 @@ void handleCommas(std::string &str)
             }
             else
             {
-                std::cerr << "Error, comma!\n";
-                return;
+                throw "Commas `,` are turned off in settings.\n";
             }
         }
     }
+    if (g_verbose)
+    {
+        return "Swapped all occurrences of commas `,` to dots `.`\n";
+    }
+    else
+    {
+        return "";
+    }
 }
 
-void handleBrackets(std::string &str)
+std::string_view debugBrackets(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
@@ -132,8 +107,7 @@ void handleBrackets(std::string &str)
             }
             else
             {
-                std::cerr << "error, forbidden brackets\n";
-                return;
+                throw "Any brackets other than parenthesis `()` are turned off in settings.\n";
             }
         }
         else if (str[i] == ']' || str[i] == '}')
@@ -145,14 +119,21 @@ void handleBrackets(std::string &str)
             }
             else
             {
-                std::cerr << "error, forbidden brackets\n";
-                return;
+                throw "Any brackets other than parenthesis `()` are turned off in settings.\n";
             }
         }
     }
+    if (g_verbose)
+    {
+        return "Swapped all occurrences of bracket `[]` `{}` to parenthesis `()`\n";
+    }
+    else
+    {
+        return "";
+    }
 }
 
-void handleBackwardSlash(std::string &str)
+std::string_view debugBackSlash(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
@@ -165,14 +146,21 @@ void handleBackwardSlash(std::string &str)
             }
             else
             {
-                std::cerr << "Error, backward slash!\n";
-                return;
+                throw "Backward slashes `\\` are turned off in settings.\n";
             }
         }
     }
+    if (g_verbose)
+    {
+        return "Swapped all occurrences of backward slashes `\\` to forward slashes `/`.\n";
+    }
+    else
+    {
+        return "";
+    }
 }
 
-void handleModulo(std::string &str)
+std::string_view debugPercentSign(std::string &str)
 {
 
     for (int i{0}; i < str.size(); ++i)
@@ -181,20 +169,27 @@ void handleModulo(std::string &str)
         {
             if (!g_xor_percentage)
             {
-                std::cerr << "Error, percentage!\n";
-                return;
+                throw "Percent signs `%` are turned off in settings.\n";
             }
             else if (g_treat_percentage_as_decimal)
             {
                 str.erase(i, 1);
                 str.insert(i, "/100");
-                i=i+3;
+                i = i + 3;
             }
         }
     }
+    if (g_verbose)
+    {
+        return "Swapped all occurrences of percent signs `%` to division `/100`.\n";
+    }
+    else
+    {
+        return "";
+    }
 }
 
-void handleExclamation(std::string &str)
+std::string_view debugExclamation(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
@@ -202,38 +197,52 @@ void handleExclamation(std::string &str)
         {
             if (!g_treat_exclamation_as_factorial)
             {
-                std::cerr << "Error, exclamation!\n";
-                return;
+                throw "Exclamation marks `!` are disabled in settings.\n";
             }
         }
     }
+    return "";
 }
 
-void swapLiteralsWithConstants(std::string &str)
+std::string_view debugLiterals(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
-        if (str[i]=='p' && str[i+1]=='i' && g_treat_pi_as_trig_constant)
+        if (str[i] == 'p' && str[i + 1] == 'i' && g_treat_pi_as_constant)
         {
-            str.erase(i,2);
-            str.insert(i,mathConstants::pi_str);
-            i=i+5;
+            str.erase(i, 2);
+            str.insert(i, mathConstants::pi_str);
+            i = i + 5;
         }
-        else if(str[i]=='e' && g_treat_e_as_log_constant)
+        else if (str[i] == 'e' && g_treat_e_as_constant)
         {
-            str.erase(i,1);
-            str.insert(i,mathConstants::e_str);
-            i=i+6;
+            str.erase(i, 1);
+            str.insert(i, mathConstants::e_str);
+            i = i + 6;
         }
+    }
+    if (g_verbose)
+    {
+        if (g_treat_pi_as_constant && g_treat_e_as_constant)
+        {
+            return "Swapped `pi` and `e` literals to their respective constants.\n";
+        }
+        else if (g_treat_pi_as_constant)
+        {
+            return "Swapped `pi` literal to its constant.\n";
+        }
+        else if (g_treat_e_as_constant)
+        {
+            return "Swapped `e` literal to its constant.\n";
+        }
+    }
+    else
+    {
+        return "";
     }
 }
 
-bool isAlphanumeric(char c)
-{
-    return (c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122);
-}
-
-void handleBracketsAdjacentSymbols(std::string &str)
+std::string_view debugBracketAdjacentSymbols(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
@@ -263,6 +272,33 @@ void handleBracketsAdjacentSymbols(std::string &str)
                 return;
             }
         }
+    }
+}
+
+std::string_view debugNonAsciiChars(std::string &str)
+{
+    for (int i{0}; i < str.size(); ++i)
+    {
+        if (str[i] > 127)
+        {
+            if (g_trim_non_ascii_chars)
+            {
+                str.erase(i, 1);
+                --i;
+            }
+            else
+            {
+                throw "Encountered non-ASCII character, you can auto erase them in settings.\n";
+            }
+        }
+    }
+    if (g_verbose)
+    {
+        return "Debugged non-ASCII characters.\n";
+    }
+    else
+    {
+        return "";
     }
 }
 
@@ -334,24 +370,4 @@ Brackets areBracketsEncapsulated(std::string_view str)
         }
     }
     return Brackets::ok;
-}
-
-void handleNonAsciiChars(std::string &str)
-{
-    for (int i{0}; i < str.size(); ++i)
-    {
-        if (str[i] > 127)
-        {
-            if (g_trim_non_ascii_chars)
-            {
-                str.erase(i, 1);
-                --i;
-            }
-            else
-            {
-                std::cerr << "Non-ASCII character at position " << i << " isn't supported.\n";
-                return;
-            }
-        }
-    }
 }

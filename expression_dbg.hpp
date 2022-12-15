@@ -27,11 +27,6 @@ enum class Brackets
 // Generally, simplification is performed first for the sake of source code simplicity.
 // I.e. I don't have to deal with whitespaces if I remove them in the first place.
 
-inline void ignoreGarbageInput()
-{
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-}
-
 inline void printMathExpression(std::string_view str)
 {
     if (std::cout << str << '\n')
@@ -40,24 +35,30 @@ inline void printMathExpression(std::string_view str)
     }
 }
 
-std::string consoleInputCritErrHandling();
+std::string consoleInputDebug();
 
 bool confirm();
 
-inline void purgeWhiteSpaces(std::string &str)
+inline void trimWhiteSpaces(std::string &str)
 {
     str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
 }
 
-void simplifyRepeatingSigns(std::string &str);
-void handleDoubleAsterisks(std::string &str);
-void handleCommas(std::string &str);
-void handleBrackets(std::string &str);
-void handleBackwardSlash(std::string& str);
-void handleModulo(std::string& str);
-void handleExclamation(std::string& str);
-void swapLiteralsWithConstants(std::string &str);
-void handleBracketsAdjacentSymbols(std::string& str);
+inline bool isAlphanumeric(char c)
+{
+    return (c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122);
+}
+
+std::string_view debugRepeatingSigns(std::string &str);
+std::string_view debugDoubleAsterisks(std::string &str);
+std::string_view debugCommas(std::string &str);
+std::string_view debugBrackets(std::string &str);
+std::string_view debugBackSlash(std::string &str);
+std::string_view debugPercentSign(std::string &str);
+std::string_view debugExclamation(std::string &str);
+std::string_view debugLiterals(std::string &str);
+std::string_view debugBracketAdjacentSymbols(std::string &str);
+std::string_view debugNonAsciiChars(std::string &str);
 
 Brackets areBracketsPaired(std::string_view str);
 Brackets areBracketsEncapsulated(std::string_view str);
