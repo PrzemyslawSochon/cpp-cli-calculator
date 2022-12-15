@@ -203,7 +203,7 @@ std::string_view debugExclamation(std::string &str)
     }
     if (g_verbose)
     {
-        return "Exclamation marks `!` debugged.\n";
+        return "Debugged exclamation `!` mark.\n";
     }
     else
     {
@@ -330,11 +330,18 @@ std::string_view areBracketsPaired(std::string_view str)
 
     if (open_brackets == close_brackets)
     {
-        return "ok";
+        if (g_verbose)
+        {
+            return "Number of opened and closed brackets matches.\n";
+        }
+        else
+        {
+            return "";
+        }
     }
     else
     {
-        return "not ok";
+        throw "Number of opened and closed brackets doesn't match!";
     }
 }
 
@@ -350,9 +357,7 @@ std::string_view areBracketsEncapsulated(std::string_view str)
                 // if char position reached -1 (out of scope) interrupt the loop
                 if (j <= -1)
                 {
-                    std::cout << "Brackets aren't correctly encapsulated. "
-                              << "See closed bracket `)` at position " << i << ".\n";
-                    return "not ok";
+                    throw "Brackets aren't correctly encapsulated!";
                 }
 
                 if (str[j] == '(')
@@ -369,9 +374,7 @@ std::string_view areBracketsEncapsulated(std::string_view str)
                 // if char position exceeded str size (out of scope) interrupt the loop
                 if (j >= str.size())
                 {
-                    std::cout << "Brackets aren't correctly encapsulated. "
-                              << "See opening bracket `(` at position " << i << ".\n";
-                    return "not ok";
+                    throw "Brackets aren't correctly encapsulated!";
                 }
 
                 if (str[j] == ')')
@@ -381,5 +384,12 @@ std::string_view areBracketsEncapsulated(std::string_view str)
             }
         }
     }
-    return "ok";
+    if (g_verbose)
+    {
+        return "Brackets are encapsulated.\n";
+    }
+    else
+    {
+        return "";
+    }
 }

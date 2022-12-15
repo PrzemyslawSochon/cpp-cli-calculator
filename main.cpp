@@ -42,8 +42,8 @@ int main()
             std::cout << debugBracketAdjacentSymbols(expression);
             printMathExpression(expression);
 
-            areBracketsPaired(expression);
-            areBracketsEncapsulated(expression);
+            std::cout << areBracketsPaired(expression);
+            std::cout << areBracketsEncapsulated(expression);
         }
         catch (const char *exception)
         {
