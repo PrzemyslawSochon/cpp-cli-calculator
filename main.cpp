@@ -55,7 +55,7 @@ int main()
         areBracketsPaired(expression);
         areBracketsEncapsulated(expression);
 
-        StringPosition str_pos{extractFromParenthesis(expression)};
+/*         StringPosition str_pos{extractFromParenthesis(expression)};
         std::string sub_expression{str_pos.str};
         std::cout << "The extracted string is: " << sub_expression << '\n';
 
@@ -70,7 +70,7 @@ int main()
 
         insertResultToExpression(expression, result, str_pos.x1, str_pos.x2);
         std::cout << "Mathematical expression after solving one of expressions:\n";
-        printMathExpression(expression);
+        printMathExpression(expression); */
 
     } while (confirm());
 

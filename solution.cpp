@@ -110,7 +110,7 @@ double results(SignificantExpr expr)
     }
 }
 
-StringPosition extractFromParenthesis(const std::string &str)
+/* StringPosition extractFromParenthesis(const std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
@@ -186,7 +186,7 @@ double calculateResultOfExpression(Expression ex)
     }
     }
     return EXIT_FAILURE;
-}
+} */
 
 void insertResultToExpression(std::string &expr, double result, int pos1, int pos2)
 {
