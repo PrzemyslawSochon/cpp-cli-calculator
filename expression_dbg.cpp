@@ -1,5 +1,6 @@
 #include "expression_dbg.hpp"
 #include "settings.hpp"
+#include "stream_dbg.hpp"
 
 std::string_view debugRepeatingSigns(std::string &str)
 {

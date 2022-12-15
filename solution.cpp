@@ -1,12 +1,8 @@
 #include "solution.hpp"
+#include "stream_dbg.hpp"
 #include <cassert>
 #include <cmath>
 #include <iostream>
-
-bool isOperator(char c)
-{
-    return c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '%' || c == '!';
-}
 
 SignificantExpr parenthesis(const std::string &str)
 {

@@ -17,23 +17,6 @@
 // Generally, simplification is performed first for the sake of source code simplicity.
 // I.e. I don't have to deal with whitespaces if I remove them in the first place.
 
-inline void printMathExpression(std::string_view str)
-{
-    if (std::cout << str << '\n')
-    {
-        return;
-    }
-}
-
-std::string consoleInputDebug();
-
-bool confirm();
-
-inline bool isAlphanumeric(char c)
-{
-    return (c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122);
-}
-
 std::string_view debugRepeatingSigns(std::string &str);
 std::string_view debugDoubleAsterisks(std::string &str);
 std::string_view debugCommas(std::string &str);
