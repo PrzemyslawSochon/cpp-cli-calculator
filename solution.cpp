@@ -88,28 +88,56 @@ std::string copyMostSignificantParent(std::string str)
     return "";
 }
 
-void solveMostSignificantOperator(std::string& str)
+void solveMostSignificantOperator(std::string &str)
 {
+    IndividualExpression expr{0, '+', 0};
     for (int i{0}; i < str.size(); ++i)
     {
-        if (isERMD(str[i]))
+        char operation{str[i]};
+        switch (operation)
         {
-            IndividualExpression expr{
+        case '^':
+        {
+            expr = {
                 copyValueFromLeft(i, str),
-                str[i],
+                '^',
                 copyValueFromRight(i, str)};
-
-                double result{calculate(expr)};
-
-                std::string result_str{std::to_string(result)};
-
-            int position_to_swap{i - expr.value1.length()};
-            int length_to_swap{
-                expr.value1.length() + expr.value2.length() + 1};
-
-            str.erase(position_to_swap, length_to_swap);
-            str.insert(position_to_swap, result_str);
         }
+        case '%':
+        {
+            expr = {
+                copyValueFromLeft(i, str),
+                '%',
+                copyValueFromRight(i, str)};
+        }
+        case '*':
+        {
+            expr = {
+                copyValueFromLeft(i, str),
+                '*',
+                copyValueFromRight(i, str)};
+        }
+        case '/':
+        {
+            expr = {
+                copyValueFromLeft(i, str),
+                '/',
+                copyValueFromRight(i, str)};
+        }
+        default:
+            continue;
+        }
+
+        double result{calculate(expr)};
+
+        std::string str_result{std::to_string(result)};
+
+        int begin_position{i - expr.value1.length()};
+        int length_to_swap{
+            expr.value1.length() + expr.value2.length() + 1};
+
+        str.erase(begin_position, length_to_swap);
+        str.insert(begin_position, str_result);
+        i = -1;
     }
 }
-
