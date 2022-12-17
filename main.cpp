@@ -1,15 +1,7 @@
 #include "expression_dbg.hpp"
-#include "solution.hpp"
 #include "stream_dbg.hpp"
-#include <exception>
-
-int counter{0};
-
-void printDebug()
-{   
-    ++counter;
-    std::cout << "Kicking and living " << counter << '\n';
-}
+#include "settings.hpp"
+#include "solution.hpp"
 
 int main()
 {

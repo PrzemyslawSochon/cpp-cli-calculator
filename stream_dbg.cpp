@@ -1,4 +1,6 @@
 #include "stream_dbg.hpp"
+#include <limits>
+#include <iostream>
 
 std::string consoleInputDebug()
 {

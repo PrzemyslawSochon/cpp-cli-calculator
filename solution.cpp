@@ -1,16 +1,13 @@
-#include "expression_dbg.hpp"
 #include "settings.hpp"
 #include "solution.hpp"
-#include "stream_dbg.hpp"
 #include <cassert>
 #include <cmath>
-#include <iostream>
-#include <sstream>
 
 std::string copyValueFromLeft(int pos, std::string str)
 {
     // might be reasonable to put assertion here
     // in case of pos==0
+
     for (int i{pos}; i >= -1; --i)
     {
         if (i == -1 || isEFRMD(str[i]))
@@ -24,6 +21,7 @@ std::string copyValueFromLeft(int pos, std::string str)
 std::string copyValueFromRight(int pos, std::string str)
 {
     // same as above, in case of pos==str.back
+
     for (int i{pos}; i <= str.size(); ++i)
     {
         if (i == str.size() || isERMDAS(str[i]))
@@ -36,6 +34,7 @@ std::string copyValueFromRight(int pos, std::string str)
 
 double calculate(IndividualExpression expr)
 {
+
     double value1{std::stod(expr.value1)};
     double value2{std::stod(expr.value2)};
     switch (expr.operation)
@@ -90,7 +89,7 @@ void solveMostSignificantOperator(std::string &str)
 
         if (operation == '^')
         {
-            
+
             expr = {
                 copyValueFromLeft(i, str),
                 '^',

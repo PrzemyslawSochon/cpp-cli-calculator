@@ -1,5 +1,63 @@
 #pragma once
+#include <algorithm>
+#include <iostream>
+#include <ios>
+#include <string>
 #include <string_view>
+
+// note ASCII only
+inline bool isAlphanumeric(char c)
+{
+    return (c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+}
+
+inline bool isAnyOperator(char c)
+{
+    return (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '%' || c == '!');
+}
+
+// exponent, remainder, multiplication, division, addition, subtraction
+inline bool isERMDAS(char c)
+{
+    return (c == '^' || c == '%' || c == '*' || c == '/' || c == '+' || c == '-');
+}
+
+// exponent, factorial, remainder, multiplication, division
+inline bool isEFRMD(char c)
+{
+    return (c == '^' || c == '!' || c == '%' || c == '*' || c == '/');
+}
+
+// exponent, remainder, multiplication, division
+inline bool isERMD(char c)
+{
+    return (c == '^' || c == '%' || c == '*' || c == '/');
+}
+
+inline bool areParentsStillAround(std::string_view str)
+{
+    for (const auto &c : str)
+    {
+        if (c == ')')
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+inline void trimWhiteSpaces(std::string &str)
+{
+    str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
+}
+
+inline void printMathExpression(std::string_view str)
+{
+    if (std::cout << str << '\n')
+    {
+        return;
+    }
+}
 
 namespace mathConstants
 {
