@@ -3,6 +3,14 @@
 #include "stream_dbg.hpp"
 #include <exception>
 
+int counter{0};
+
+void printDebug()
+{   
+    ++counter;
+    std::cout << "Kicking and living " << counter << '\n';
+}
+
 int main()
 {
     do
@@ -53,6 +61,10 @@ int main()
             std::cerr.flush();
             continue;
         }
+
+
+        solveMostSignificantOperator(expression);
+        printMathExpression(expression);
 
     } while (again());
 

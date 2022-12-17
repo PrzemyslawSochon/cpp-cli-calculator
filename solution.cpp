@@ -90,6 +90,7 @@ void solveMostSignificantOperator(std::string &str)
 
         if (operation == '^')
         {
+            
             expr = {
                 copyValueFromLeft(i, str),
                 '^',
