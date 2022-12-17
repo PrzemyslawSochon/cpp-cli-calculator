@@ -411,4 +411,7 @@ std::string_view debugAdjacentOperators(std::string &str)
             throw "Illegal operator next to parenthesis!";
         }
     }
+    if(g_verbose)
+    return "Partially debugged adjacent operators\n";
+    else{return "";}
 }

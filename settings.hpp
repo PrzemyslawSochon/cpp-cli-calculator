@@ -1,9 +1,12 @@
 #pragma once
 #include <algorithm>
+#include <array>
 #include <iostream>
-#include <ios>
 #include <string>
 #include <string_view>
+
+constexpr std::array <char, 4>
+order_of_operations{'^', '%', '*', '/'};
 
 // note ASCII only
 inline bool isAlphanumeric(char c)

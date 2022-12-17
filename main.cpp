@@ -55,8 +55,8 @@ int main()
         }
 
 
-        solveMostSignificantOperator(expression);
-        printMathExpression(expression);
+/*         solveMostSignificantOperator(expression);
+        printMathExpression(expression); */
 
     } while (again());
 
