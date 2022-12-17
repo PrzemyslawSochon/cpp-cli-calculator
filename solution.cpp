@@ -7,13 +7,6 @@
 #include <iostream>
 #include <sstream>
 
-struct IndividualExpression
-{
-    std::string value1{};
-    char operation{};
-    std::string value2{};
-};
-
 std::string copyValueFromLeft(int pos, std::string str)
 {
     // might be reasonable to put assertion here
@@ -131,9 +124,9 @@ void solveMostSignificantOperator(std::string &str)
 
         std::string str_result{std::to_string(result)};
 
-        int begin_position{i - expr.value1.length()};
+        int begin_position{i - static_cast<int>(expr.value1.length())};
         int length_to_swap{
-            expr.value1.length() + expr.value2.length() + 1};
+            static_cast<int>(expr.value1.length()) + static_cast<int>(expr.value2.length()) + 1};
 
         str.erase(begin_position, length_to_swap);
         str.insert(begin_position, str_result);

@@ -212,7 +212,7 @@ std::string_view debugExclamation(std::string &str)
     }
 }
 
-std::string_view debugLiterals(std::string &str)
+/* std::string_view debugLiterals(std::string &str)
 {
     for (int i{0}; i < str.size(); ++i)
     {
@@ -248,7 +248,7 @@ std::string_view debugLiterals(std::string &str)
     {
         return "";
     }
-}
+} */
 
 std::string_view debugBracketAdjacentSymbols(std::string &str)
 {
