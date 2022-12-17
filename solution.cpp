@@ -11,11 +11,11 @@ std::string copyValueFromLeft(int pos, std::string str)
 
     for (int i{pos - 1}; i >= -1; --i)
     {
-        if (i == -1 || isERMD(str[i]))
+        if (i == -1 || isERMDAS(str[i]))
         {
-            std::cout << "left i: " << i << " left pos " << pos << '\n';
-            int length{pos - i - 1};
-            std::cout << "left value len " << length << '\n';
+/*             std::cout << "left i: " << i << " left pos " << pos << '\n';
+ */            int length{pos - i - 1};
+/*             std::cout << "left value len " << length << '\n'; */
             return str.substr(i + 1, length);
         }
     }
@@ -27,14 +27,15 @@ std::string copyValueFromRight(int pos, std::string str)
 {
     // same as above, in case of pos==str.back
 
+    //ignore negat
     for (int i{pos + 1}; i <= str.size(); ++i)
     {
-        if (i == str.size() || isERMD(str[i]))
+        if (i == str.size() || isERMDAS(str[i]))
         {
-            std::cout << "Right i: " << i << " right pos " << pos << '\n';
-            int length{i - pos - 1};
-            std::cout << "right value len " << length << '\n';
-            return str.substr(pos + 1, length);
+/*             std::cout << "Right i: " << i << " right pos " << pos << '\n';
+ */            int length{i - pos - 1};
+/*             std::cout << "right value len " << length << '\n';
+ */            return str.substr(pos + 1, length);
         }
     }
     assert(pos && "Integer overflow probably");
@@ -95,7 +96,7 @@ void solveMostSignificantOperator(std::string &str)
 
     for (const char &operation : order_of_operations)
     {
-        //reasonable default state, solution to that equals 0
+        //reasonable default state
         IndividualExpression expr{"0", '+', "0"};
 
         for (int i{0}; i < str.size(); ++i)
@@ -111,7 +112,6 @@ void solveMostSignificantOperator(std::string &str)
                 std::string str_result{std::to_string(result)};
 
                 int begin_position{i - static_cast<int>(expr.value1.length())};
-                std::cout << begin_position << '\n';
                 int length_to_swap{
                     static_cast<int>(expr.value1.length()) + static_cast<int>(expr.value2.length())};
 

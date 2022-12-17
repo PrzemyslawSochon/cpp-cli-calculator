@@ -16,6 +16,13 @@ int main()
 
         try
         {
+            std::cout << debugNonAsciiChars(expression);
+            std::cout << areBracketsPaired(expression);
+            std::cout << areBracketsEncapsulated(expression);
+            std::cout << debugOuterOperators(expression);
+            std::cout << debugClutchedOperators(expression);
+
+
             std::cout << debugRepeatingSigns(expression);
             printMathExpression(expression);
 
@@ -42,11 +49,6 @@ int main()
 
             std::cout << debugBracketAdjacentSymbols(expression);
             printMathExpression(expression);
-
-            std::cout << areBracketsPaired(expression);
-            std::cout << areBracketsEncapsulated(expression);
-            std::cout << debugOuterOperators(expression);
-            std::cout << debugClutchedOperators(expression);
         }
         catch (const char *exception)
         {
@@ -55,8 +57,8 @@ int main()
             continue;
         }
 
-        /*         solveMostSignificantOperator(expression);
-                printMathExpression(expression); */
+                solveMostSignificantOperator(expression);
+                printMathExpression(expression);
 
     } while (again());
 

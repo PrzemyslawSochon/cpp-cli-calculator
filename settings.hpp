@@ -5,8 +5,8 @@
 #include <string>
 #include <string_view>
 
-constexpr std::array <char, 4>
-order_of_operations{'^', '%', '*', '/'};
+constexpr std::array <char, 6>
+order_of_operations{'^', '%', '*', '/', '+', '-'};
 
 // note ASCII only
 inline bool isAlphanumeric(char c)
@@ -23,6 +23,12 @@ inline bool isAnyOperator(char c)
 inline bool isERMDAS(char c)
 {
     return (c == '^' || c == '%' || c == '*' || c == '/' || c == '+' || c == '-');
+}
+
+// exponent, remainder, multiplication, division, addition, subtraction
+inline bool isERMDA(char c)
+{
+    return (c == '^' || c == '%' || c == '*' || c == '/' || c == '+');
 }
 
 // exponent, factorial, remainder, multiplication, division
@@ -83,7 +89,7 @@ constexpr bool g_treat_parenthesis_adjacent_symbols_as_multiplication{true};
 constexpr bool g_treat_pi_as_constant{true};
 constexpr bool g_treat_e_as_constant{true};
 
-constexpr bool g_trim_non_ascii_chars{true};
+constexpr bool g_trim_non_ascii_chars{false};
 
 // only one of them can be true, if user forces both to be true
 // XOR will throw 0
