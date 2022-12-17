@@ -10,6 +10,7 @@ int main()
         std::cout << "Enter a mathematical expression.\n";
         std::string expression{};
 
+        //consoleInputDebug is just std::cin with extra steps
         expression = consoleInputDebug();
         trimWhiteSpaces(expression);
 
@@ -44,6 +45,7 @@ int main()
 
             std::cout << areBracketsPaired(expression);
             std::cout << areBracketsEncapsulated(expression);
+            std::cout << debugAdjacentOperators(expression);
         }
         catch (const char *exception)
         {

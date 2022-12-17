@@ -394,3 +394,22 @@ std::string_view areBracketsEncapsulated(std::string_view str)
         return "";
     }
 }
+
+std::string_view debugAdjacentOperators(std::string &str)
+{
+    if (isEFRMD(str[0]))
+    {
+        throw "Illegal operator at the beginning of the expression!";
+    }
+    if (isERMDAS(str.back()))
+    {
+        throw "Illegal operator at the end of the expression!";
+    }
+    for (int i{0}; i < str.size(); ++i)
+    {
+        if ((str[i] == ')' && isERMDAS(str[i - 1])) || str[i] == '(' && isEFRMD(str[i + 1]))
+        {
+            throw "Illegal operator next to parenthesis!";
+        }
+    }
+}
