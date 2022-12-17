@@ -94,40 +94,39 @@ void solveMostSignificantOperator(std::string &str)
     for (int i{0}; i < str.size(); ++i)
     {
         char operation{str[i]};
-        switch (operation)
-        {
-        case '^':
+
+        if (operation == '^')
         {
             expr = {
                 copyValueFromLeft(i, str),
                 '^',
                 copyValueFromRight(i, str)};
         }
-        case '%':
+        else if (operation == '%')
         {
             expr = {
                 copyValueFromLeft(i, str),
                 '%',
                 copyValueFromRight(i, str)};
         }
-        case '*':
+        else if (operation == '*')
         {
             expr = {
                 copyValueFromLeft(i, str),
                 '*',
                 copyValueFromRight(i, str)};
         }
-        case '/':
+        else if (operation == '/')
         {
             expr = {
                 copyValueFromLeft(i, str),
                 '/',
                 copyValueFromRight(i, str)};
         }
-        default:
+        else
+        {
             continue;
         }
-
         double result{calculate(expr)};
 
         std::string str_result{std::to_string(result)};
