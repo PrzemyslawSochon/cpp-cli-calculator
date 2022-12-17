@@ -83,6 +83,7 @@ std::string copyMostSignificantParent(std::string str)
 void solveMostSignificantOperator(std::string &str)
 {
     IndividualExpression expr{0, '+', 0};
+    std::cout << "I'm in ";
     for (int i{0}; i < str.size(); ++i)
     {
         char operation{str[i]};

@@ -37,8 +37,8 @@ int main()
             std::cout << debugExclamation(expression);
             printMathExpression(expression);
 
-/*             std::cout << debugLiterals(expression);
-            printMathExpression(expression); */
+            std::cout << debugLiterals(expression);
+            printMathExpression(expression);
 
             std::cout << debugBracketAdjacentSymbols(expression);
             printMathExpression(expression);
