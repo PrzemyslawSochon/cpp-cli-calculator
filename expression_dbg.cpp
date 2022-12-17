@@ -28,7 +28,8 @@ std::string_view debugRepeatingSigns(std::string &str)
             str.insert(i, "-");
             --i;
         }
-        else if ((str[i] == '^' && str[i + 1] == '+') ||
+        else if ((str[i] == '(' && str[i + 1] == '+') ||
+                 (str[i] == '^' && str[i + 1] == '+') ||
                  (str[i] == '%' && str[i + 1] == '+') ||
                  (str[i] == '*' && str[i + 1] == '+') ||
                  (str[i] == '/' && str[i + 1] == '+'))
@@ -227,7 +228,7 @@ std::string_view debugExclamation(std::string &str)
 
 std::string_view debugLiterals(std::string &str)
 {
-    for (int i{0}; i < str.size(); ++i)
+    for (int i{0}; i < str.size() - 1; ++i)
     {
         if (str[i] == 'p' && str[i + 1] == 'i' && g_treat_pi_as_constant)
         {
@@ -418,7 +419,7 @@ std::string_view debugOuterOperators(std::string &str)
     {
         throw "Illegal operator at the end of the expression!";
     }
-    for (int i{0}; i < str.size(); ++i)
+    for (int i{0}; i < str.size() - 1; ++i)
     {
         if ((str[i] == ')' && isERMDAS(str[i - 1])) || str[i] == '(' && isEFRMD(str[i + 1]))
         {
@@ -426,9 +427,58 @@ std::string_view debugOuterOperators(std::string &str)
         }
     }
     if (g_verbose)
-        return "Partially debugged adjacent operators\n";
+        return "Debugged adjacent operators\n";
     else
     {
         return "";
+    }
+}
+
+std::string_view debugClutchedOperators(std::string &str)
+{
+    for (int i{0}; i < str.size() - 1; ++i)
+    {
+        if (str[i] == '^' && str[i + 1] == '^')
+        {
+            throw "Clutched operator!";
+        }
+        else if (str[i] == '^' && str[i + 1] == '%')
+        {
+            throw "Clutched operator!";
+        }
+        else if (str[i] == '^' && str[i + 1] == '/')
+        {
+            throw "Clutched operator!";
+        }
+        else if (str[i] == '%' && str[i + 1] == '%')
+        {
+            throw "Clutched operator!";
+        }
+        else if (str[i] == '%' && str[i + 1] == '^')
+        {
+            throw "Clutched operator!";
+        }
+        else if (str[i] == '%' && str[i + 1] == '/')
+        {
+            throw "Clutched operator!";
+        }
+        else if (str[i] == '/' && str[i + 1] == '/')
+        {
+            throw "Clutched operator!";
+        }
+        else if (str[i] == '/' && str[i + 1] == '^')
+        {
+            throw "Clutched operator!";
+        }
+        else if (str[i] == '^' && str[i + 1] == '%')
+        {
+            throw "Clutched operator!";
+        }
+        if (g_verbose)
+            return "Debugged clutched operators\n";
+        else
+        {
+            return "";
+        }
     }
 }

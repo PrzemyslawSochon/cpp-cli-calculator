@@ -46,6 +46,7 @@ int main()
             std::cout << areBracketsPaired(expression);
             std::cout << areBracketsEncapsulated(expression);
             std::cout << debugOuterOperators(expression);
+            std::cout << debugClutchedOperators(expression);
         }
         catch (const char *exception)
         {

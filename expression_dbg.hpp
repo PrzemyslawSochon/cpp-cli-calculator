@@ -28,6 +28,7 @@ std::string_view debugLiterals(std::string &str);
 std::string_view debugBracketAdjacentSymbols(std::string &str);
 std::string_view debugNonAsciiChars(std::string &str);
 std::string_view debugOuterOperators(std::string &str);
+std::string_view debugClutchedOperators(std::string &str);
 
 std::string_view areBracketsPaired(std::string_view str);
 std::string_view areBracketsEncapsulated(std::string_view str);
