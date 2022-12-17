@@ -28,7 +28,21 @@ std::string_view debugRepeatingSigns(std::string &str)
             str.insert(i, "-");
             --i;
         }
+        else if ((str[i] == '^' && str[i + 1] == '+') ||
+                 (str[i] == '%' && str[i + 1] == '+') ||
+                 (str[i] == '*' && str[i + 1] == '+') ||
+                 (str[i] == '/' && str[i + 1] == '+'))
+        {
+            str.erase(i + 1, 1);
+        }
     }
+
+    // clean leftover plus if present
+    if (str[0] == '+')
+    {
+        str.erase(0, 1);
+    }
+
     if (g_verbose)
     {
         return "Simplified signed values.\n";
@@ -394,7 +408,7 @@ std::string_view areBracketsEncapsulated(std::string_view str)
     }
 }
 
-std::string_view debugAdjacentOperators(std::string &str)
+std::string_view debugOuterOperators(std::string &str)
 {
     if (isEFRMD(str[0]))
     {
@@ -411,7 +425,10 @@ std::string_view debugAdjacentOperators(std::string &str)
             throw "Illegal operator next to parenthesis!";
         }
     }
-    if(g_verbose)
-    return "Partially debugged adjacent operators\n";
-    else{return "";}
+    if (g_verbose)
+        return "Partially debugged adjacent operators\n";
+    else
+    {
+        return "";
+    }
 }

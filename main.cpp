@@ -10,7 +10,7 @@ int main()
         std::cout << "Enter a mathematical expression.\n";
         std::string expression{};
 
-        //consoleInputDebug is just std::cin with extra steps
+        // consoleInputDebug is just std::cin with extra steps
         expression = consoleInputDebug();
         trimWhiteSpaces(expression);
 
@@ -45,7 +45,7 @@ int main()
 
             std::cout << areBracketsPaired(expression);
             std::cout << areBracketsEncapsulated(expression);
-            std::cout << debugAdjacentOperators(expression);
+            std::cout << debugOuterOperators(expression);
         }
         catch (const char *exception)
         {
@@ -54,9 +54,8 @@ int main()
             continue;
         }
 
-
-/*         solveMostSignificantOperator(expression);
-        printMathExpression(expression); */
+        /*         solveMostSignificantOperator(expression);
+                printMathExpression(expression); */
 
     } while (again());
 
