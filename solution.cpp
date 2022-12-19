@@ -19,9 +19,6 @@ std::string copyValueFromLeft(int pos, std::string str)
                 length = pos - 1;
                 return str.substr(i, length);
             }
-            /*             std::cout << "left i: " << i << " left pos " << pos << '\n';
-             */
-            /*             std::cout << "left value len " << length << '\n'; */
             return str.substr(i + 1, length);
         }
     }
@@ -41,11 +38,7 @@ std::string copyValueFromRight(int pos, std::string str)
     {
         if (i == str.size() || isERMDAS(str[i]))
         {
-            /*             std::cout << "Right i: " << i << " right pos " << pos << '\n';
-             */
             int length{i - pos - 1};
-            /*             std::cout << "right value len " << length << '\n';
-             */
             return str.substr(pos + 1, length);
         }
     }
