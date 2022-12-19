@@ -2,9 +2,11 @@
 #include "stream_dbg.hpp"
 #include "settings.hpp"
 #include "solution.hpp"
+#include <iomanip>
 
 int main()
 {
+    std::cout << std::fixed << std::setprecision(3);
     do
     {
         std::cout << "Enter a mathematical expression.\n";
@@ -20,6 +22,10 @@ int main()
             std::cout << areBracketsPaired(expression);
             std::cout << areBracketsEncapsulated(expression);
             std::cout << debugOuterOperators(expression);
+
+            std::cout << debugPercentSign(expression);
+            printMathExpression(expression);
+
             std::cout << debugClutchedOperators(expression);
 
 
@@ -36,9 +42,6 @@ int main()
             printMathExpression(expression);
 
             std::cout << debugBackSlash(expression);
-            printMathExpression(expression);
-
-            std::cout << debugPercentSign(expression);
             printMathExpression(expression);
 
             std::cout << debugExclamation(expression);

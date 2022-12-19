@@ -13,9 +13,15 @@ std::string copyValueFromLeft(int pos, std::string str)
     {
         if (i == -1 || isERMDAS(str[i]))
         {
-/*             std::cout << "left i: " << i << " left pos " << pos << '\n';
- */            int length{pos - i - 1};
-/*             std::cout << "left value len " << length << '\n'; */
+            int length{pos - i - 1};
+            if (str[i] == '-')
+            {
+                length = pos - 1;
+                return str.substr(i, length);
+            }
+            /*             std::cout << "left i: " << i << " left pos " << pos << '\n';
+             */
+            /*             std::cout << "left value len " << length << '\n'; */
             return str.substr(i + 1, length);
         }
     }
@@ -26,16 +32,21 @@ std::string copyValueFromLeft(int pos, std::string str)
 std::string copyValueFromRight(int pos, std::string str)
 {
     // same as above, in case of pos==str.back
-
-    //ignore negat
-    for (int i{pos + 1}; i <= str.size(); ++i)
+    int i{pos + 1};
+    if (i == '-')
+    {
+        int i{pos + 2};
+    }
+    for (; i <= str.size(); ++i)
     {
         if (i == str.size() || isERMDAS(str[i]))
         {
-/*             std::cout << "Right i: " << i << " right pos " << pos << '\n';
- */            int length{i - pos - 1};
-/*             std::cout << "right value len " << length << '\n';
- */            return str.substr(pos + 1, length);
+            /*             std::cout << "Right i: " << i << " right pos " << pos << '\n';
+             */
+            int length{i - pos - 1};
+            /*             std::cout << "right value len " << length << '\n';
+             */
+            return str.substr(pos + 1, length);
         }
     }
     assert(pos && "Integer overflow probably");
@@ -96,10 +107,10 @@ void solveMostSignificantOperator(std::string &str)
 
     for (const char &operation : order_of_operations)
     {
-        //reasonable default state
+        // reasonable default state
         IndividualExpression expr{"0", '+', "0"};
 
-        for (int i{0}; i < str.size(); ++i)
+        for (int i{1}; i < str.size(); ++i)
         {
             if (str[i] == operation)
             {
@@ -107,7 +118,11 @@ void solveMostSignificantOperator(std::string &str)
                     copyValueFromLeft(i, str),
                     operation,
                     copyValueFromRight(i, str)};
+                    std::cout << "Left variable: " << expr.value1 << '\n';
+                    std::cout << "Operation : " << expr.operation << '\n';
+                    std::cout << "Right variable: " << expr.value2 << '\n';
                 double result{calculate(expr)};
+                std::cout << "Result: " << result << '\n';
 
                 std::string str_result{std::to_string(result)};
 
@@ -117,7 +132,8 @@ void solveMostSignificantOperator(std::string &str)
 
                 str.erase(begin_position, length_to_swap);
                 str.insert(begin_position, str_result);
-                i = -1;
+                i = 0;
+                std::cout << "Now expression looks like: " << str << '\n';
             }
         }
     }

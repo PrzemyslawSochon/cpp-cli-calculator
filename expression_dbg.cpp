@@ -172,6 +172,42 @@ std::string_view debugOuterOperators(std::string &str)
     }
 }
 
+std::string_view debugPercentSign(std::string &str)
+{
+
+    for (int i{0}; i < str.size()-1; ++i)
+    {
+        if (str[i] == '%')
+        {
+            if (!g_xor_percentage)
+            {
+                throw "Percent signs `%` are turned off in settings.";
+            }
+            else if (g_treat_percentage_as_decimal)
+            {
+                if((str[i]==str.back()||isAnyOperator(str[i+1])))
+                {
+                str.erase(i, 1);
+                str.insert(i, "/100");
+                i = i + 3;
+                }
+                else
+                {
+                    throw "No operation after percentage sign, can't swap for /100.";
+                }
+            }
+        }
+    }
+    if (g_verbose)
+    {
+        return "Swapped all occurrences of percent signs `%` to division `/100`.\n";
+    }
+    else
+    {
+        return "";
+    }
+}
+
 std::string_view debugClutchedOperators(std::string &str)
 {
     for (int i{0}; i < str.size() - 1; ++i)
@@ -388,35 +424,6 @@ std::string_view debugBackSlash(std::string &str)
     if (g_verbose)
     {
         return "Swapped all occurrences of backward slashes `\\` to forward slashes `/`.\n";
-    }
-    else
-    {
-        return "";
-    }
-}
-
-std::string_view debugPercentSign(std::string &str)
-{
-
-    for (int i{0}; i < str.size(); ++i)
-    {
-        if (str[i] == '%')
-        {
-            if (!g_xor_percentage)
-            {
-                throw "Percent signs `%` are turned off in settings.";
-            }
-            else if (g_treat_percentage_as_decimal)
-            {
-                str.erase(i, 1);
-                str.insert(i, "/100");
-                i = i + 3;
-            }
-        }
-    }
-    if (g_verbose)
-    {
-        return "Swapped all occurrences of percent signs `%` to division `/100`.\n";
     }
     else
     {

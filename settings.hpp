@@ -93,7 +93,7 @@ constexpr bool g_trim_non_ascii_chars{false};
 
 // only one of them can be true, if user forces both to be true
 // XOR will throw 0
-constexpr bool g_treat_percentage_as_modulo{false};
-constexpr bool g_treat_percentage_as_decimal{true};
+constexpr bool g_treat_percentage_as_modulo{true};
+constexpr bool g_treat_percentage_as_decimal{false};
 constexpr bool g_xor_percentage{
     g_treat_percentage_as_modulo ^ g_treat_percentage_as_decimal};
