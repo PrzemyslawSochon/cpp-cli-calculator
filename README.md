@@ -1,132 +1,73 @@
-# Name of the project
-> Additional information or tagline
+# C++ CLI Calculator
 
-A brief description of your project, what it is used for and how does life get
-awesome when someone starts to use it.
+The calculator is my project built from the ground up in C++.
+Its primary task is to debug and calculate mathematical expressions.
 
-## Installing / Getting started
+As for now, it supports:
 
-A quick introduction of the minimal setup you need to get a hello world up &
-running.
+1. Six different operations:
+-exponent,
+-division's remainder,
+-multiplication,
+-division,
+-addition,
+-subtraction.
 
-```shell
-packagemanager install awesome-project
-awesome-project start
-awesome-project "Do something!"  # prints "Nah."
-```
+2. Multi-operational expressions such as: `1^2%3*4/5+6-7`.
+3. Negative and floating variables.
+4. Constants: `Pi` (the trigonometric constant) and `e` (the natural logarithm).
 
-Here you should say what actually happens when you execute the code above.
 
-### Initial Configuration
+## Getting started
 
-Some projects require initial configuration (e.g. access tokens or keys, `npm i`).
-This is the section where you would document those requirements.
+To run and compile the project you need:
+1. compiler with C++17 or above support,
+2. terminal emulator.
 
-## Developing
+## Expression debug
 
-Here's a brief intro about what a developer must do in order to start developing
-the project further:
+The calculator is set to debug an expression, before attempting to solve it.
 
-```shell
-git clone https://github.com/your/awesome-project.git
-cd awesome-project/
-packagemanager install
-```
+It's configurable to take two actions:
+1. Stop running and print adequate error.
+2. If possible, fix the input by itself.
 
-And state what happens step-by-step.
+## Calculation
 
-### Building
+After successfully debugging an expression to the analysis-friendly state it does the following:
 
-If your project needs some additional steps for the developer to build the
-project after some code changes, state them here:
-
-```shell
-./configure
-make
-make install
-```
-
-Here again you should state what actually happens when the code above gets
-executed.
-
-### Deploying / Publishing
-
-In case there's some step you have to take that publishes this project to a
-server, this is the right time to state it.
-
-```shell
-packagemanager deploy awesome-project -s server.com -u username -p password
-```
-
-And again you'd need to tell what the previous code actually does.
-
-## Features
-
-What's all the bells and whistles this project can perform?
-* What's the main functionality
-* You can also do another thing
-* If you get really randy, you can even do this
+1. Stores user input as a string object called `expression`.
+2. Looks for the leading operation (configurable in `settings.hpp`) in the string.
+3. Copy both operands.
+4. Convert string operands to floating variables (double type).
+5. Calculate the result of the sub-expression.
+6. Swap the sub-expression with a new result.
+7. Print the expression.
+8. Repeat until no operands are found.
 
 ## Configuration
 
-Here you should write what are all of the configurations a user can enter when
-using the project.
+Debugging behavior, order of operations and constants' values are configurable in the `settings.hpp` file.
 
-#### Argument 1
-Type: `String`  
-Default: `'default value'`
+#### Examples
 
-State what an argument does and how you can use it. If needed, you can provide
-an example below.
+1. `constexpr std::array <char, 6>
+order_of_operations` holds the order of operations.
+By default, it is set to `{'^', '%', '*', '/', '+', '-'};`
+You might want to deprecate the priority of a modulo sign '%'.
 
-Example:
-```bash
-awesome-project "Some other value"  # Prints "You're nailing this readme!"
-```
+2. `constexpr bool g_verbose` decides whether or not to prompt the user with debug details. By default, it is set to `true`.
 
-#### Argument 2
-Type: `Number|Boolean`  
-Default: 100
+3. `namespace mathConstants` holds constants' values. The contents are self-explanatory.
 
-Copy-paste as many of these as you need.
+4. Rest of the file holds inline functions, which I am going to split in the future.
 
-## Contributing
+### Links
 
-When you publish something open source, one of the greatest motivations is that
-anyone can just jump in and start contributing to your project.
-
-These paragraphs are meant to welcome those kind souls to feel that they are
-needed. You should state something like:
-
-"If you'd like to contribute, please fork the repository and use a feature
-branch. Pull requests are warmly welcome."
-
-If there's anything else the developer needs to know (e.g. the code style
-guide), you should link it here. If there's a lot of things to take into
-consideration, it is common to separate this section to its own file called
-`CONTRIBUTING.md` (or similar). If so, you should say that it exists here.
-
-## Links
-
-Even though this information can be found inside the project on machine-readable
-format like in a .json file, it's good to include a summary of most useful
-links to humans using your project. You can include links like:
-
-- Project homepage: https://your.github.com/awesome-project/
-- Repository: https://github.com/your/awesome-project/
-- Issue tracker: https://github.com/your/awesome-project/issues
-  - In case of sensitive bugs like security vulnerabilities, please contact
-    my@email.com directly instead of using issue tracker. We value your effort
-    to improve the security and privacy of this project!
-- Related projects:
-  - Your other project: https://github.com/your/other-project/
-  - Someone else's project: https://github.com/someones/awesome-project/
+- Project homepage: https://github.com/PrzemyslawSochon/cpp-cli-calculator
+- Repository: https://github.com/PrzemyslawSochon/cpp-cli-calculator
 
 
-## Licensing
+### Licensing
 
-One really important part: Give your project a proper license. Here you should
-state what the license is and how to find the text version of the license.
-Something like:
-
-"The code in this project is licensed under MIT license."
+The code in this project is licensed under MIT license.
