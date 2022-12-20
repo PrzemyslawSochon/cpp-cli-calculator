@@ -67,7 +67,6 @@ inline void trimWhiteSpaces(std::string &str)
 
 inline void printMathExpression(std::string_view str)
 {
-    std::cout << std::fixed << std::setprecision(1);
     if (std::cout << str << '\n')
     {
         return;
