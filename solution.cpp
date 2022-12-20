@@ -16,7 +16,7 @@ std::string copyValueFromLeft(int pos, std::string str)
             int length{pos - i - 1};
             if (str[i] == '-')
             {
-                length = pos - 1;
+                length = pos - i;
                 return str.substr(i, length);
             }
             return str.substr(i + 1, length);
@@ -98,30 +98,29 @@ std::string copyMostSignificantParent(std::string str)
 void solveMostSignificantOperator(std::string &str)
 {
 
-    for (const char &operation : order_of_operations)
+    for (std::string_view operation : order)
     {
         // reasonable default state
         IndividualExpression expr{"0", '+', "0"};
-
         for (int i{1}; i < str.size(); ++i)
         {
-            if (str[i] == operation)
+            if (has_char(operation, str[i]))
             {
                 expr = {
                     copyValueFromLeft(i, str),
-                    operation,
+                    str[i],
                     copyValueFromRight(i, str)};
-                    std::cout << "Left variable: " << expr.value1 << '\n';
-                    std::cout << "Operation : " << expr.operation << '\n';
-                    std::cout << "Right variable: " << expr.value2 << '\n';
-                double result{std::round(calculate(expr)*1000)/1000};
+                std::cout << "Left variable: " << expr.value1 << '\n';
+                std::cout << "Operation : " << expr.operation << '\n';
+                std::cout << "Right variable: " << expr.value2 << '\n';
+                double result{std::round(calculate(expr) * 1000) / 1000};
                 std::cout << "Result: " << result << '\n';
 
                 std::string str_result{std::to_string(result)};
 
                 int begin_position{i - static_cast<int>(expr.value1.length())};
                 int length_to_swap{
-                    static_cast<int>(expr.value1.length()) + static_cast<int>(expr.value2.length())};
+                    static_cast<int>(expr.value1.length()) + static_cast<int>(expr.value2.length() + 1)};
 
                 str.erase(begin_position, length_to_swap);
                 str.insert(begin_position, str_result);

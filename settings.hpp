@@ -6,8 +6,12 @@
 #include <string>
 #include <string_view>
 
-constexpr std::array <char, 6>
-order_of_operations{'^', '%', '*', '/', '+', '-'};
+constexpr std::array<std::string_view, 4> order{"^", "%", "/*", "+-"};
+
+inline bool has_char(std::string_view str, char c)
+{
+    return str.find(c) != std::string::npos;
+}
 
 // note ASCII only
 inline bool isAlphanumeric(char c)
