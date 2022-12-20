@@ -37,9 +37,11 @@ int main()
             std::cerr.flush();
             continue;
         }
-
+                std::cout << "Expression after debugging:\n";
+                printMathExpression(expression);
+        
                 solveMostSignificantOperator(expression);
-                std::cout << "The final result is: \n";
+                std::cout << "The final result is:\n";
                 printMathExpression(expression);
 
     } while (again());
