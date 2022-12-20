@@ -57,3 +57,20 @@ bool again()
         return (confirm());
     } while (true);
 }
+
+std::string removeTrailingZeros(const double &value)
+{
+    std::string str = std::to_string(value);
+    std::size_t decimal_pos = str.find('.');
+    std::size_t last_nonzero = str.find_last_not_of('0');
+    // If all characters after the decimal point are zeros
+    if (last_nonzero == decimal_pos)
+    {
+        // Remove the decimal point as well
+        last_nonzero--;
+    }
+    // Erase all characters after the last non-zero character
+    str.erase(last_nonzero + 1);
+
+    return str;
+}

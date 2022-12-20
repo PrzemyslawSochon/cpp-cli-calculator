@@ -1,5 +1,6 @@
 #include "settings.hpp"
 #include "solution.hpp"
+#include "stream_dbg.hpp"
 #include <array>
 #include <cassert>
 #include <cmath>
@@ -113,10 +114,10 @@ void solveMostSignificantOperator(std::string &str)
                 std::cout << "Left variable: " << expr.value1 << '\n';
                 std::cout << "Operation : " << expr.operation << '\n';
                 std::cout << "Right variable: " << expr.value2 << '\n';
-                double result{std::round(calculate(expr) * 1000) / 1000};
+                double result{calculate(expr)};
                 std::cout << "Result: " << result << '\n';
 
-                std::string str_result{std::to_string(result)};
+                std::string str_result{removeTrailingZeros(result)};
 
                 int begin_position{i - static_cast<int>(expr.value1.length())};
                 int length_to_swap{
