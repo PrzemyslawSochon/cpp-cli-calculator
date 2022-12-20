@@ -7,8 +7,6 @@
 
 std::string copyValueFromLeft(int pos, std::string str)
 {
-    // might be reasonable to put assertion here
-    // in case of pos==0
 
     for (int i{pos - 1}; i >= -1; --i)
     {
@@ -29,7 +27,6 @@ std::string copyValueFromLeft(int pos, std::string str)
 
 std::string copyValueFromRight(int pos, std::string str)
 {
-    // same as above, in case of pos==str.back
     int i{pos + 1};
     if (i == '-')
     {
