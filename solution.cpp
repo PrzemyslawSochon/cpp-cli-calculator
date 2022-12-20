@@ -114,7 +114,7 @@ void solveMostSignificantOperator(std::string &str)
                     std::cout << "Left variable: " << expr.value1 << '\n';
                     std::cout << "Operation : " << expr.operation << '\n';
                     std::cout << "Right variable: " << expr.value2 << '\n';
-                double result{calculate(expr)};
+                double result{std::round(calculate(expr)*1000)/1000};
                 std::cout << "Result: " << result << '\n';
 
                 std::string str_result{std::to_string(result)};

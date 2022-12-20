@@ -2,11 +2,10 @@
 #include "stream_dbg.hpp"
 #include "settings.hpp"
 #include "solution.hpp"
-#include <iomanip>
 
 int main()
 {
-    std::cout << std::fixed << std::setprecision(3);
+    std::cout << std::fixed << std::setprecision(1);
     do
     {
         std::cout << "Enter a mathematical expression.\n";
