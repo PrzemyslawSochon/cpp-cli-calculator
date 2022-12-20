@@ -21,8 +21,8 @@ As for now, it supports:
 ## Getting started
 
 To run and compile the project you need:
-1. compiler with C++17 or above support,
-2. terminal emulator.
+1. Compiler with C++17 or above support.
+2. Terminal emulator.
 
 ## Expression debug
 
@@ -51,7 +51,7 @@ Debugging behavior, order of operations and constants' values are configurable i
 
 #### Examples
 
-1. `constexpr std::array <char, 6>
+1. `constexpr std::array <std::string_view, 6>
 order_of_operations` holds the order of operations.
 By default, it is set to `{'^', '%', '*', '/', '+', '-'};`
 You might want to deprecate the priority of a modulo sign '%'.
