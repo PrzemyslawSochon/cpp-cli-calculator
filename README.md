@@ -51,16 +51,28 @@ Debugging behavior, order of operations and constants' values are configurable i
 
 #### Examples
 
-1. `constexpr std::array <std::string_view, 6>
-order_of_operations` holds the order of operations.
-By default, it is set to `{'^', '%', '*', '/', '+', '-'};`
+1. `constexpr std::array <std::string_view, 6> order` holds the order of operations.
+By default, it is set to `{"^", "%", "/*", "+-"};`
 You might want to deprecate the priority of a modulo sign '%'.
 
 2. `constexpr bool g_verbose` decides whether or not to prompt the user with debug details. By default, it is set to `true`.
 
 3. `namespace mathConstants` holds constants' values. The contents are self-explanatory.
 
-4. Rest of the file holds inline functions, which I am going to split in the future.
+4. Rest of the file holds inline functions, which I am going to split in the future for the sake of clarity.
+
+
+### To-do (in that order)
+
+1. Full support for brackets.
+
+2. Full support for factorials.
+
+3. Full support for step by step explanations.
+
+4. Option to preserve and save settings on the user's machine.
+
+5. GUI.
 
 ### Links
 
