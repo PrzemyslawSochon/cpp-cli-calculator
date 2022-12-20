@@ -62,7 +62,7 @@ You might want to deprecate the priority of a modulo sign '%'.
 4. Rest of the file holds inline functions, which I am going to split in the future for the sake of clarity.
 
 
-### To-do (in that order)
+## To-do (in that order)
 
 1. Full support for brackets.
 
