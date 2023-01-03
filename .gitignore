@@ -38,3 +38,5 @@
 
 # Configuration files
 *.json
+# Release
+*.vscode

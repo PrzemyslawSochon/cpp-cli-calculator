@@ -20,36 +20,16 @@ int main()
             std::cout << areBracketsPaired(expression);
             std::cout << areBracketsEncapsulated(expression);
             std::cout << debugOuterOperators(expression);
-
             std::cout << debugPercentSign(expression);
-            printMathExpression(expression);
-
             std::cout << debugClutchedOperators(expression);
-
-
             std::cout << debugRepeatingSigns(expression);
-            printMathExpression(expression);
-
             std::cout << debugDoubleAsterisks(expression);
-            printMathExpression(expression);
-
             std::cout << debugCommas(expression);
-            printMathExpression(expression);
-
-            std::cout << debugBrackets(expression);
-            printMathExpression(expression);
-
+            //std::cout << debugBrackets(expression);
             std::cout << debugBackSlash(expression);
-            printMathExpression(expression);
-
-            std::cout << debugExclamation(expression);
-            printMathExpression(expression);
-
+            //std::cout << debugExclamation(expression);
             std::cout << debugLiterals(expression);
-            printMathExpression(expression);
-
-            std::cout << debugBracketAdjacentSymbols(expression);
-            printMathExpression(expression);
+            //std::cout << debugBracketAdjacentSymbols(expression);
         }
         catch (const char *exception)
         {
@@ -57,8 +37,11 @@ int main()
             std::cerr.flush();
             continue;
         }
-
+                std::cout << "Expression after debugging:\n";
+                printMathExpression(expression);
+        
                 solveMostSignificantOperator(expression);
+                std::cout << "The final result is:\n";
                 printMathExpression(expression);
 
     } while (again());
