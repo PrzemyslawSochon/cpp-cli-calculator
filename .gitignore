@@ -36,5 +36,7 @@
 *.out
 *.app
 
+# Configuration files
+*.json
 # Release
 *.vscode
